@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nayam Restaurante Poblenou · Brunch, comidas y cenas en Barcelona</title>
+<meta name="description" content="Nayam, brunch y cocina casera todo el día en Poblenou (Sant Martí), Barcelona. Carta con fotos, desayunos, horario y reservas por WhatsApp.">
+<meta name="theme-color" content="#0e1410">
+
+<!-- Seguridad: GitHub Pages no permite cabeceras HTTP, así que la política va en una meta. Sin scripts ni estilos en línea. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self'; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta property="og:type" content="restaurant">
+<meta property="og:title" content="Nayam Restaurante · Poblenou, Barcelona">
+<meta property="og:description" content="El brunch que Poblenou estaba esperando. Desayunos, comidas y cenas, todo el día.">
+<meta property="og:locale" content="es_ES">
+<!-- Cuando tengas dominio añade aquí: og:url y og:image con la URL absoluta de assets/img/local-banqueta-l.webp -->
+
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/styles.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Nayam Restaurante",
+  "description": "Brunch, desayunos, comidas y cenas con cocina casera todo el día en Poblenou, Barcelona.",
+  "telephone": "+34673327809",
+  "email": "nayambarcelona@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Carrer del Doctor Trueta, 218",
+    "addressLocality": "Barcelona",
+    "postalCode": "08005",
+    "addressCountry": "ES"
+  },
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "23:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "08:00", "closes": "00:00" }
+  ],
+  "sameAs": [
+    "https://www.instagram.com/nayambarcelona",
+    "https://www.tiktok.com/@nayambarcelona",
+    "https://www.facebook.com/nayambarcelona",
+    "https://x.com/nayambarcelona"
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#inicio" id="skip">Saltar al contenido</a>
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" aria-label="Nayam">NAYAM</a>
+    <nav class="nav" aria-label="Principal" id="nav"></nav>
+    <button class="pill lang" id="lang" type="button" aria-label="Idioma / Language">EN</button>
+    <a class="pill book" id="bookTop" href="#reservas"></a>
+    <button class="pill burger" id="burger" type="button" aria-expanded="false" aria-controls="mnav" aria-label="Menú">
+      <svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <div class="mnav" id="mnav" hidden><div class="wrap" id="mnavLinks"></div></div>
+</header>
+
+<main id="inicio">
+  <div class="hero">
+    <img src="assets/img/local-banqueta-l.webp" alt="" data-alt="altHero" fetchpriority="high">
+    <div class="wrap">
+      <p class="neon" aria-hidden="true">Nayam</p>
+      <h1 data-i18n="h1"></h1>
+      <p class="lead" data-i18n="lead"></p>
+      <div class="chips">
+        <a class="chip" href="#resenas"><span class="st" aria-hidden="true">★★★★★</span><span data-i18n="rating"></span></a>
+        <span class="chip" id="status" hidden><i></i><span></span></span>
+      </div>
+      <div class="cta">
+        <a class="btn primary" id="heroBook" target="_blank" rel="noopener"></a>
+        <a class="btn ghost" href="#carta" data-i18n="seeMenu"></a>
+      </div>
+    </div>
+  </div>
+
+  <section id="momentos">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="momEyebrow"></span><h2 data-i18n="momTitle"></h2></div>
+      <div class="moments">
+        <a class="moment" href="#carta" data-tab="breakfast"><img src="assets/img/desayuno-especial-l.webp" alt="" data-alt="altBreak"><div><h3 data-i18n="m1t"></h3><p data-i18n="m1p"></p></div></a>
+        <a class="moment" href="#carta" data-tab="food"><img src="assets/img/plato-carne-gourmet-nayam-l.webp" alt="" data-alt="altDish"><div><h3 data-i18n="m2t"></h3><p data-i18n="m2p"></p></div></a>
+        <a class="moment" href="#local"><img src="assets/img/interior-restaurante-nayam-poblenou-l.webp" alt="" data-alt="altCafe"><div><h3 data-i18n="m3t"></h3><p data-i18n="m3p"></p></div></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="vistazo">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="tasteEyebrow"></span><h2 data-i18n="tasteTitle"></h2><p data-i18n="tasteLead"></p></div>
+      <div class="strip" id="strip"></div>
+    </div>
+  </section>
+
+  <section id="carta">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="menuEyebrow"></span><h2 data-i18n="menuTitle"></h2><p data-i18n="menuLead"></p></div>
+      <div class="tabs" role="tablist" id="tabs">
+        <button role="tab" id="tab-food" data-tab="food" aria-selected="true"></button>
+        <button role="tab" id="tab-breakfast" data-tab="breakfast" aria-selected="false"></button>
+      </div>
+    </div>
+    <nav class="cats" aria-label="Categorías"><div class="wrap"><div class="row" id="chips"></div></div></nav>
+    <div class="wrap" id="menu"></div>
+  </section>
+
+  <section id="resenas">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="revEyebrow"></span><h2 data-i18n="revTitle"></h2></div>
+      <div class="rate"><b>5,0</b><div><div class="stars" aria-hidden="true">★★★★★</div><span class="hint" data-i18n="revSrc"></span></div>
+        <div class="rowbtn push-right">
+          <a class="btn line" href="https://share.google/Qy5UdTd4c7EKVeDJf" target="_blank" rel="noopener" data-i18n="revAll"></a>
+          <a class="btn solid" href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x12a4a3aa45550229:0xf9113d32ae199097!12e1?source=g.page.m._&amp;laa=merchant-review-solicitation" target="_blank" rel="noopener" data-i18n="revWrite"></a></div></div>
+      <div class="revs" id="revs"></div>
+    </div>
+  </section>
+
+  <section id="local">
+    <div class="wrap">
+      <div class="about">
+        <div class="head flush"><span class="eyebrow" data-i18n="roomEyebrow"></span><h2 data-i18n="roomTitle"></h2></div>
+        <p data-i18n="roomText"></p>
+      </div>
+      <div class="room">
+        <figure class="wide"><img src="assets/img/local-sala-l.webp" alt="" data-alt="altSala"></figure>
+        <figure><img src="assets/img/local-arcos-l.webp" alt="" data-alt="altArcos"></figure>
+        <figure><img src="assets/img/nayam-ambiente-restaurante-l.webp" alt="" data-alt="altAmb"></figure>
+        <figure><img src="assets/img/local-neon-l.webp" alt="" data-alt="altNeon"></figure>
+        <figure><img src="assets/img/interior-restaurante-nayam-poblenou-l.webp" alt="" data-alt="altInt"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="reservas">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="resEyebrow"></span><h2 data-i18n="resTitle"></h2><p data-i18n="resLead"></p></div>
+      <div class="bookgrid">
+        <div class="card">
+          <h3 data-i18n="formTitle"></h3>
+          <div class="form">
+            <label class="f full" for="fName"><span data-i18n="fName"></span><input class="in" id="fName" type="text" autocomplete="name"></label>
+            <label class="f" for="fDate"><span data-i18n="fDate"></span><input class="in" id="fDate" type="date"></label>
+            <label class="f" for="fTime"><span data-i18n="fTime"></span><select class="in" id="fTime"></select></label>
+            <label class="f full" for="fPeople"><span data-i18n="fPeople"></span><select class="in" id="fPeople"></select></label>
+          </div>
+          <a class="btn primary" id="wa" target="_blank" rel="noopener"></a>
+          <p class="hint" data-i18n="formHint"></p>
+        </div>
+        <div class="card">
+          <h3 data-i18n="howTitle"></h3>
+          <ol class="steps">
+            <li><span class="nb">1</span><span data-i18n="how1"></span></li>
+            <li><span class="nb">2</span><span data-i18n="how2"></span></li>
+            <li><span class="nb">3</span><span data-i18n="how3"></span></li>
+          </ol>
+          <div class="bookimg"><img src="assets/img/pizza-cuatro-quesos-nayam-l.webp" alt="" data-alt="altPizza"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow" data-i18n="visitEyebrow"></span><h2 data-i18n="visitTitle"></h2></div>
+      <div class="visit">
+        <div class="card">
+          <dl class="facts">
+            <div class="full"><dt data-i18n="addrL"></dt><dd>Carrer del Doctor Trueta, 218<br>08005 Barcelona · Poblenou (Sant Martí)</dd></div>
+            <div><dt data-i18n="phoneL"></dt><dd><a href="tel:+34673327809">+34 673 327 809</a><br><span class="hint" data-i18n="phoneNote"></span></dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:nayambarcelona@gmail.com">nayambarcelona@gmail.com</a></dd></div>
+          </dl>
+          <h3 data-i18n="hoursTitle"></h3>
+          <table class="hours"><tbody id="hours"></tbody></table>
+          <div class="rowbtn">
+            <a class="btn solid" href="https://www.google.com/maps/search/?api=1&amp;query=Nayam+Restaurante+Carrer+del+Doctor+Trueta+218+Barcelona" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11.5a7 7 0 0 0-14 0C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg><span data-i18n="directions"></span></a>
+            <a class="btn line" href="tel:+34673327809"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg><span data-i18n="call"></span></a>
+          </div>
+        </div>
+        <div class="facade"><img src="assets/img/local-fachada-l.webp" alt="" data-alt="altFacade"></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div><a class="brand" href="#inicio">NAYAM</a><br><small>Restaurante &middot; Poblenou, Barcelona</small></div>
+    <div class="soc" id="soc"></div>
+    <small>&copy; 2026 Nayam</small>
+  </div>
+</footer>
+
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Foto del plato">
+  <button class="x" id="lbx" type="button" aria-label="Cerrar">×</button>
+  <figure><img id="lbi" alt=""><figcaption><b id="lbn"></b><span id="lbd"></span><span class="price" id="lbp"></span></figcaption></figure>
+</div>
+
+<script src="js/data.js" defer></script>
+<script src="js/i18n.js" defer></script>
+<script src="js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+/* Textos de la web en español (es) e inglés (en). */
+(function (w) {
+const T = {
+ es:{nav:[['#carta','Carta'],['#resenas','Reseñas'],['#local','El local'],['#reservas','Reservas'],['#contacto','Contacto']],
+  book:'Reservar',bookLong:'Reservar por WhatsApp',seeMenu:'Ver la carta',
+  h1:'El brunch que Poblenou estaba esperando',lead:'Desayunos de aquí y del mundo, brunch, comidas y cenas. Cocina casera, todo el día, en el corazón de Sant Martí.',rating:'5,0 en Google',
+  open:'Abierto ahora · hasta las ',closed:'Cerrado ahora · abre a las ',
+  momEyebrow:'Más que un desayuno',momTitle:'Para cada momento del día',
+  m1t:'Desayunos y brunch',m1p:'Servidos todo el día. Del desayuno marroquí al francés.',m2t:'Comida y cena',m2p:'Ensaladas, burgers, pastas, carnes y pizzas al momento.',m3t:'Café y buen ambiente',m3p:'El rincón perfecto para compartir en Poblenou.',
+  tasteEyebrow:'Un vistazo a Nayam',tasteTitle:'Del desayuno a la cena',tasteLead:'Cocinamos cada plato al momento, con ingredientes frescos.',
+  menuEyebrow:'La carta',menuTitle:'Nuestra carta',menuLead:'Pulsa un plato con foto para verlo más grande. Precios con IVA incluido.',
+  tabFood:'Comida y cena',tabBreak:'Desayunos',breakNote:'Servidos todo el día · Precios con IVA incluido',
+  revEyebrow:'Lo que dicen',revTitle:'Nuestros clientes hablan',revSrc:'Reseñas de Google',revAll:'Ver todas en Google',revWrite:'Escribir una reseña',
+  roomEyebrow:'El local',roomTitle:'Un rincón acogedor en Poblenou',roomText:'Nayam es un rincón acogedor en Poblenou donde el desayuno no tiene hora. Cocinamos cada plato al momento, con ingredientes frescos, para que disfrutes de un buen brunch, una comida tranquila o una cena entre amigos.',
+  resEyebrow:'Reservas',resTitle:'Reserva tu mesa',resLead:'Reserva en segundos por WhatsApp, sin formularios largos.',
+  formTitle:'Rellena y envía',fName:'Nombre',fDate:'Día',fTime:'Hora',fPeople:'Nº de personas',formHint:'Se abre WhatsApp con tu mensaje listo. Te confirmamos la disponibilidad al momento.',
+  howTitle:'Reservar es muy fácil',how1:'Escríbenos por WhatsApp y dinos día, hora y número de personas.',how2:'Te confirmamos la disponibilidad al momento.',how3:'Te esperamos en Carrer del Doctor Trueta 218, Poblenou.',
+  visitEyebrow:'Visítanos',visitTitle:'Encuéntranos en Poblenou',addrL:'Dirección',phoneL:'Teléfono',phoneNote:'WhatsApp y teléfono',hoursTitle:'Horario',directions:'Cómo llegar',call:'Llamar',
+  days:['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado','Domingo'],
+  waMsg:['¡Hola Nayam! Quiero reservar una mesa.','Nombre: ','Día y hora: ','Nº de personas: '],person:['persona','personas'],
+  altHero:'Comedor de Nayam con banqueta caramelo, mesas puestas y neón al fondo',altBreak:'Desayuno especial para dos en Nayam',altDish:'Plato de carne gourmet en Nayam',altCafe:'Interior del restaurante Nayam',
+  altSala:'Sala de Nayam con mesas de madera y butacas de terciopelo',altArcos:'Nichos en arco con luz cálida y planta tropical',altAmb:'Ambiente acogedor en Nayam',altNeon:'Neón de Nayam sobre muro vegetal',altInt:'Banqueta y mesas largas en Nayam',altPizza:'Pizza cuatro quesos',altFacade:'Fachada de Nayam Restaurante de noche',
+  close:'Cerrar'},
+ en:{nav:[['#carta','Menu'],['#resenas','Reviews'],['#local','The room'],['#reservas','Booking'],['#contacto','Contact']],
+  book:'Book',bookLong:'Book on WhatsApp',seeMenu:'See the menu',
+  h1:'The brunch Poblenou was waiting for',lead:'Breakfast from here and around the world, brunch, lunch and dinner. Homemade food, all day long, in the heart of Sant Martí.',rating:'5.0 on Google',
+  open:'Open now · until ',closed:'Closed now · opens at ',
+  momEyebrow:'More than breakfast',momTitle:'For every moment of the day',
+  m1t:'Breakfast & brunch',m1p:'Served all day. From Moroccan to French breakfast.',m2t:'Lunch & dinner',m2p:'Salads, burgers, pasta, meats and pizzas, made to order.',m3t:'Coffee & good vibes',m3p:'The perfect spot to share in Poblenou.',
+  tasteEyebrow:'A taste of Nayam',tasteTitle:'From breakfast to dinner',tasteLead:'We cook every dish to order, with fresh ingredients.',
+  menuEyebrow:'The menu',menuTitle:'Our menu',menuLead:'Tap a dish with a photo to see it bigger. VAT included.',
+  tabFood:'Lunch & dinner',tabBreak:'Breakfast',breakNote:'Served all day · VAT included',
+  revEyebrow:'What people say',revTitle:'Our guests talk',revSrc:'Google reviews',revAll:'See all on Google',revWrite:'Write a review',
+  roomEyebrow:'The room',roomTitle:'A cosy corner in Poblenou',roomText:'Nayam is a cosy corner in Poblenou where breakfast has no set time. We cook every dish to order, with fresh ingredients, so you can enjoy a good brunch, a relaxed lunch or dinner with friends.',
+  resEyebrow:'Reservations',resTitle:'Book your table',resLead:'Book in seconds on WhatsApp, no long forms.',
+  formTitle:'Fill in and send',fName:'Name',fDate:'Day',fTime:'Time',fPeople:'Number of people',formHint:'WhatsApp opens with your message ready. We confirm availability right away.',
+  howTitle:'Booking is easy',how1:'Message us on WhatsApp with the day, time and number of people.',how2:'We confirm availability right away.',how3:'We’re waiting for you at Carrer del Doctor Trueta 218, Poblenou.',
+  visitEyebrow:'Visit us',visitTitle:'Find us in Poblenou',addrL:'Address',phoneL:'Phone',phoneNote:'WhatsApp & phone',hoursTitle:'Opening hours',directions:'Directions',call:'Call',
+  days:['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'],
+  waMsg:['Hello Nayam! I would like to book a table.','Name: ','Day and time: ','Number of people: '],person:['person','people'],
+  altHero:'Nayam dining room with caramel banquette, set tables and neon sign at the back',altBreak:'Special breakfast for two at Nayam',altDish:'Gourmet meat dish at Nayam',altCafe:'Inside Nayam restaurant',
+  altSala:'Nayam dining room with wooden tables and velvet armchairs',altArcos:'Arched niches with warm light and a tropical plant',altAmb:'Cosy atmosphere at Nayam',altNeon:'Nayam neon sign on a plant wall',altInt:'Banquette and long tables at Nayam',altPizza:'Four cheese pizza',altFacade:'Nayam Restaurante front at night',
+  close:'Close'}
+};
+
+w.NAYAM_I18N = T;
+})(window);

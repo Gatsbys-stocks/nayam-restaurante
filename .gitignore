@@ -1,0 +1,15 @@
+# sistema
+.DS_Store
+Thumbs.db
+*.log
+# editores
+.vscode/
+.idea/
+# secretos: nunca subir
+.env
+.env.*
+*.pem
+*.key
+# trabajo local
+node_modules/
+*.zip
