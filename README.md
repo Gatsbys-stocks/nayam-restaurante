@@ -2,7 +2,7 @@
 
 Web estática del restaurante Nayam: portada, carta completa con fotos (comida, cena y desayunos), reseñas, el local, reservas por WhatsApp, horario y contacto. Español e inglés, modo claro y oscuro, pensada primero para el móvil.
 
-No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaScript que se publican tal cual. Incluye estadísticas de visitas con GoatCounter (sin cookies) y vídeos de TikTok que solo se cargan cuando el visitante pulsa play.
+No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaScript que se publican tal cual. Incluye estadísticas de visitas con GoatCounter (sin cookies) y una sección de vídeos de TikTok con uno grande en reproducción y miniaturas para cambiar.
 
 ## Estructura
 
@@ -70,7 +70,7 @@ Esta web no tiene formularios que envíen datos ni servidor, por lo que la super
 - **Content Security Policy** estricta en `index.html`: solo se ejecutan scripts, estilos, fuentes e imágenes del propio sitio, más dos excepciones concretas: el script de GoatCounter (`gc.zgo.at`) con su endpoint (`9-s.goatcounter.com`) y el reproductor de TikTok (`frame-src https://www.tiktok.com`). No hay scripts ni estilos en línea y no hay formularios que envíen datos.
 - **Pocos terceros, bien acotados:** las fuentes están alojadas en el propio repositorio y no hay mapas incrustados ni librerías externas.
   - **GoatCounter** cuenta visitas sin cookies ni datos personales. Las estadísticas se ven en https://9-s.goatcounter.com. Ese código de sitio es el mismo que usa otro proyecto: si quieres estadísticas separadas, crea un sitio nuevo en GoatCounter y cambia las dos URLs `9-s.goatcounter.com` en `index.html` y `_headers`.
-  - **TikTok:** los vídeos aparecen como una portada guardada en el propio repositorio. El reproductor de TikTok (y sus cookies) solo se carga cuando el visitante pulsa play, y va dentro de un `iframe` con `sandbox`. La web avisa de ello justo debajo de los vídeos.
+  - **TikTok:** el vídeo grande se carga solo, sin sonido, cuando el visitante llega a esa sección. Las demás miniaturas son imágenes guardadas en el propio repositorio y no cargan nada de TikTok hasta que se pulsan. El reproductor va en un `iframe` con `sandbox`, y TikTok puede usar sus propias cookies al cargarse; la web lo avisa debajo de los vídeos. Si prefieres que no cargue nada hasta pulsar play, cambia en `js/main.js` el bloque «el vídeo grande empieza solo».
 - **Enlaces externos** con `rel="noopener"`.
 - **Sin secretos:** no hay claves ni tokens en el código. `.gitignore` bloquea `.env`, claves y certificados para que nunca se suban por error. No añadas aquí contraseñas ni claves de API.
 - **Reservas por WhatsApp:** el formulario solo compone un enlace `wa.me` con el mensaje. Los datos del cliente no pasan por ningún servidor de la web.

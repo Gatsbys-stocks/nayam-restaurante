@@ -102,26 +102,47 @@ function renderHours(){
   $('span',st).textContent = isOpen ? t('open')+(openFromPrev?prev[1]:h[1]) : t('closed')+(m<o?h[0]:HOURS[(today+1)%7][0]);
 }
 
-/* Vídeos de TikTok: el reproductor solo se carga al pulsar (privacidad y velocidad) */
+/* Vídeos de TikTok: uno grande reproduciéndose y miniaturas al lado para cambiar */
+let ttIndex = 0, ttLoaded = false;
+const ttNf = () => new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',{notation:'compact',maximumFractionDigits:1});
 function renderVideos(){
-  const nf = new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',{notation:'compact',maximumFractionDigits:1});
-  $('#tt').innerHTML = VIDEOS.map(v=>`<div class="ttcard" data-vid="${v.id}"><button type="button" class="ttplay" aria-label="${t('ttPlay')}: ${esc(v.title)}">
+  const nf = ttNf();
+  $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" role="listitem" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(v.title)}" ${i===ttIndex?'aria-current="true"':''}>
     <img src="assets/img/tiktok-${v.id}.webp" alt="" loading="lazy" width="270" height="480">
     <span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
-    <span class="tttx"><b>${esc(v.title)}</b><small>${nf.format(v.views)} ${t('ttViews')}</small></span></button></div>`).join('');
+    <span class="ttviews">${nf.format(v.views)}</span></button>`).join('');
+  renderCaption();
+  if(!ttLoaded){ // portada hasta que el reproductor se carga
+    $('#ttframe').innerHTML = `<img src="assets/img/tiktok-${VIDEOS[ttIndex].id}.webp" alt="">`;
+  }
 }
-$('#tt').addEventListener('click',e=>{
-  const b=e.target.closest('.ttplay'); if(!b) return;
-  const card=b.parentElement, id=card.dataset.vid;
-  const f=document.createElement('iframe');
-  f.src='https://www.tiktok.com/player/v1/'+encodeURIComponent(id)+'?autoplay=1&music_info=1&description=1';
-  f.title='TikTok @nayambarcelona';
-  f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
+function renderCaption(){
+  const v = VIDEOS[ttIndex];
+  $('#ttcap').innerHTML = `${esc(v.title)}<small>${ttNf().format(v.views)} ${t('ttViews')}</small>`;
+}
+function playVideo(i, muted){
+  ttIndex = i; ttLoaded = true;
+  const v = VIDEOS[i];
+  const f = document.createElement('iframe');
+  f.src = 'https://www.tiktok.com/player/v1/'+encodeURIComponent(v.id)+'?autoplay=1&music_info=1&description=1'+(muted?'&muted=1':'');
+  f.title = 'TikTok @nayambarcelona: '+v.title;
+  f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
   f.setAttribute('allowfullscreen','');
   f.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups allow-presentation');
-  f.referrerPolicy='strict-origin-when-cross-origin';
-  card.replaceChildren(f);
+  f.referrerPolicy = 'strict-origin-when-cross-origin';
+  $('#ttframe').replaceChildren(f);
+  $$('.ttthumb').forEach(b=>{ if(+b.dataset.i===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current'); });
+  renderCaption();
+}
+$('#tt').addEventListener('click',e=>{
+  const b = e.target.closest('.ttthumb'); if(!b) return;
+  playVideo(+b.dataset.i, false);
 });
+/* el vídeo grande empieza solo (sin sonido, como exigen los navegadores) al llegar a la sección */
+if('IntersectionObserver' in window){
+  const ttio = new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){ ttio.disconnect(); if(!ttLoaded) playVideo(ttIndex, true); } },{rootMargin:'300px 0px'});
+  ttio.observe($('#ttframe'));
+} else { playVideo(0, true); }
 
 function applyLang(){
   document.documentElement.lang = lang;
