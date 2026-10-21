@@ -220,3 +220,19 @@ footer small{color:var(--muted)}
 .sub-title{margin-top:1.6rem;font-size:1.5rem}
 .skip{position:absolute;left:-999px;top:0;z-index:100;background:var(--accent);color:var(--accent-ink);padding:.7rem 1rem;border-radius:0 0 12px 0;font-weight:700}
 .skip:focus{left:0}
+
+/* TikTok */
+.tt{display:flex;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-block:.2rem 1rem;scrollbar-width:thin;
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
+.ttcard{flex:none;width:min(64vw,270px);aspect-ratio:9/16;border-radius:20px;overflow:hidden;scroll-snap-align:start;position:relative;background:#000}
+.ttplay{display:block;width:100%;height:100%;padding:0;border:0;background:#000;position:relative;color:var(--hero-fg);text-align:left}
+.ttplay img{width:100%;height:100%;object-fit:cover}
+.ttplay::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.05) 40%,rgba(0,0,0,.8) 100%)}
+.ttico{position:absolute;left:50%;top:42%;z-index:1;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
+.ttico .i{width:30px;height:30px;margin-left:3px}
+.tttx{position:absolute;inset:auto 0 0 0;z-index:1;padding:1rem;display:flex;flex-direction:column;gap:.25rem}
+.tttx b{font-size:.95rem;line-height:1.25}
+.tttx small{opacity:.85;font-size:.8rem}
+.ttcard iframe{width:100%;height:100%;border:0;display:block}
+.tt-cta{margin-top:1rem}
+.tt-note{margin-top:.8rem}

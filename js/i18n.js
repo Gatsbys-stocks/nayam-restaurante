@@ -1,7 +1,8 @@
 /* Textos de la web en español (es) e inglés (en). */
 (function (w) {
 const T = {
- es:{nav:[['#carta','Carta'],['#resenas','Reseñas'],['#local','El local'],['#reservas','Reservas'],['#contacto','Contacto']],
+ es:{ttEyebrow:'En TikTok',ttTitle:'Mira lo que pasa en Nayam',ttLead:'Visitas, platos y detrás de cámaras, directo desde nuestro TikTok.',ttFollow:'Síguenos en TikTok',ttNote:'Al reproducir un vídeo se carga el reproductor de TikTok, que puede usar sus propias cookies.',ttPlay:'Ver vídeo',ttViews:'visualizaciones',
+  nav:[['#carta','Carta'],['#tiktok','TikTok'],['#resenas','Reseñas'],['#local','El local'],['#reservas','Reservas'],['#contacto','Contacto']],
   book:'Reservar',bookLong:'Reservar por WhatsApp',seeMenu:'Ver la carta',
   h1:'El brunch que Poblenou estaba esperando',lead:'Desayunos de aquí y del mundo, brunch, comidas y cenas. Cocina casera, todo el día, en el corazón de Sant Martí.',rating:'5,0 en Google',
   open:'Abierto ahora · hasta las ',closed:'Cerrado ahora · abre a las ',
@@ -21,7 +22,8 @@ const T = {
   altHero:'Comedor de Nayam con banqueta caramelo, mesas puestas y neón al fondo',altBreak:'Desayuno especial para dos en Nayam',altDish:'Plato de carne gourmet en Nayam',altCafe:'Interior del restaurante Nayam',
   altSala:'Sala de Nayam con mesas de madera y butacas de terciopelo',altArcos:'Nichos en arco con luz cálida y planta tropical',altAmb:'Ambiente acogedor en Nayam',altNeon:'Neón de Nayam sobre muro vegetal',altInt:'Banqueta y mesas largas en Nayam',altPizza:'Pizza cuatro quesos',altFacade:'Fachada de Nayam Restaurante de noche',
   close:'Cerrar'},
- en:{nav:[['#carta','Menu'],['#resenas','Reviews'],['#local','The room'],['#reservas','Booking'],['#contacto','Contact']],
+ en:{ttEyebrow:'On TikTok',ttTitle:'See what happens at Nayam',ttLead:'Visits, dishes and behind the scenes, straight from our TikTok.',ttFollow:'Follow us on TikTok',ttNote:'Playing a video loads the TikTok player, which may use its own cookies.',ttPlay:'Play video',ttViews:'views',
+  nav:[['#carta','Menu'],['#tiktok','TikTok'],['#resenas','Reviews'],['#local','The room'],['#reservas','Booking'],['#contacto','Contact']],
   book:'Book',bookLong:'Book on WhatsApp',seeMenu:'See the menu',
   h1:'The brunch Poblenou was waiting for',lead:'Breakfast from here and around the world, brunch, lunch and dinner. Homemade food, all day long, in the heart of Sant Martí.',rating:'5.0 on Google',
   open:'Open now · until ',closed:'Closed now · opens at ',

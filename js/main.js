@@ -1,7 +1,7 @@
 /* Lógica de la página: idioma, carta, galería, reservas por WhatsApp y horario. Sin dependencias. */
 (function () {
 'use strict';
-const { WA, MENU, STRIP, REVS, HOURS } = window.NAYAM_DATA;
+const { WA, MENU, STRIP, REVS, HOURS, VIDEOS } = window.NAYAM_DATA;
 const T = window.NAYAM_I18N;
 const IC = {
   ig:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/>',
@@ -102,6 +102,27 @@ function renderHours(){
   $('span',st).textContent = isOpen ? t('open')+(openFromPrev?prev[1]:h[1]) : t('closed')+(m<o?h[0]:HOURS[(today+1)%7][0]);
 }
 
+/* Vídeos de TikTok: el reproductor solo se carga al pulsar (privacidad y velocidad) */
+function renderVideos(){
+  const nf = new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',{notation:'compact',maximumFractionDigits:1});
+  $('#tt').innerHTML = VIDEOS.map(v=>`<div class="ttcard" data-vid="${v.id}"><button type="button" class="ttplay" aria-label="${t('ttPlay')}: ${esc(v.title)}">
+    <img src="assets/img/tiktok-${v.id}.webp" alt="" loading="lazy" width="270" height="480">
+    <span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
+    <span class="tttx"><b>${esc(v.title)}</b><small>${nf.format(v.views)} ${t('ttViews')}</small></span></button></div>`).join('');
+}
+$('#tt').addEventListener('click',e=>{
+  const b=e.target.closest('.ttplay'); if(!b) return;
+  const card=b.parentElement, id=card.dataset.vid;
+  const f=document.createElement('iframe');
+  f.src='https://www.tiktok.com/player/v1/'+encodeURIComponent(id)+'?autoplay=1&music_info=1&description=1';
+  f.title='TikTok @nayambarcelona';
+  f.allow='autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
+  f.setAttribute('allowfullscreen','');
+  f.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups allow-presentation');
+  f.referrerPolicy='strict-origin-when-cross-origin';
+  card.replaceChildren(f);
+});
+
 function applyLang(){
   document.documentElement.lang = lang;
   $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -119,7 +140,7 @@ function applyLang(){
   $('#revs').innerHTML = REVS.map(r=>`<figure class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>“${esc(r[1].trim())}”</p><figcaption class="who"><span class="av" aria-hidden="true">${esc(r[0][0])}</span><span><b>${esc(r[0])}</b>${t('revSrc')}</span></figcaption></figure>`).join('');
   $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb'],['https://x.com/nayambarcelona','X','x']]
     .map(s=>`<a href="${s[0]}" target="_blank" rel="noopener" aria-label="${s[1]}">${svg(s[2])}</a>`).join('');
-  renderMenu(); renderHours(); fillForm(); setHH();
+  renderVideos(); renderMenu(); renderHours(); fillForm(); setHH();
 }
 $('#lang').onclick = ()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} applyLang(); };
 function closeNav(){ $('#mnav').hidden=true; $('#burger').setAttribute('aria-expanded','false'); setHH(); }

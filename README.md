@@ -2,7 +2,7 @@
 
 Web estática del restaurante Nayam: portada, carta completa con fotos (comida, cena y desayunos), reseñas, el local, reservas por WhatsApp, horario y contacto. Español e inglés, modo claro y oscuro, pensada primero para el móvil.
 
-No usa frameworks, ni servidor, ni base de datos, ni cookies. Son archivos HTML, CSS y JavaScript que se publican tal cual.
+No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaScript que se publican tal cual. Incluye estadísticas de visitas con GoatCounter (sin cookies) y vídeos de TikTok que solo se cargan cuando el visitante pulsa play.
 
 ## Estructura
 
@@ -55,6 +55,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 | Precios, platos, descripciones | `js/data.js` (objeto `MENU`, con texto en español e inglés) |
 | Horario | `js/data.js` (`HOURS`, lunes primero) **y** el bloque JSON-LD de `index.html` |
 | Reseñas | `js/data.js` (`REVS`) |
+| Vídeos de TikTok | `js/data.js` (`VIDEOS`): `id` es el número al final de la URL del vídeo; la portada va en `assets/img/tiktok-ID.webp` (vertical 9:16) |
 | Teléfono de reservas (WhatsApp) | `js/data.js` (`WA`, solo dígitos con prefijo) y los enlaces `tel:` de `index.html` |
 | Textos de la web | `js/i18n.js` |
 | Colores | variables al principio de `css/styles.css` |
@@ -66,8 +67,10 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 Esta web no tiene formularios que envíen datos ni servidor, por lo que la superficie de ataque es mínima. Aun así:
 
-- **Content Security Policy** estricta en `index.html`: solo se ejecutan scripts, estilos, fuentes e imágenes del propio sitio. No hay scripts ni estilos en línea, no se permiten conexiones de red desde el JavaScript y no hay formularios que envíen datos.
-- **Sin terceros:** las fuentes están alojadas en el propio repositorio y no hay analítica, cookies, mapas incrustados ni librerías externas. Por eso no hace falta banner de cookies y se evita el problema de privacidad (RGPD) de cargar Google Fonts.
+- **Content Security Policy** estricta en `index.html`: solo se ejecutan scripts, estilos, fuentes e imágenes del propio sitio, más dos excepciones concretas: el script de GoatCounter (`gc.zgo.at`) con su endpoint (`9-s.goatcounter.com`) y el reproductor de TikTok (`frame-src https://www.tiktok.com`). No hay scripts ni estilos en línea y no hay formularios que envíen datos.
+- **Pocos terceros, bien acotados:** las fuentes están alojadas en el propio repositorio y no hay mapas incrustados ni librerías externas.
+  - **GoatCounter** cuenta visitas sin cookies ni datos personales. Las estadísticas se ven en https://9-s.goatcounter.com. Ese código de sitio es el mismo que usa otro proyecto: si quieres estadísticas separadas, crea un sitio nuevo en GoatCounter y cambia las dos URLs `9-s.goatcounter.com` en `index.html` y `_headers`.
+  - **TikTok:** los vídeos aparecen como una portada guardada en el propio repositorio. El reproductor de TikTok (y sus cookies) solo se carga cuando el visitante pulsa play, y va dentro de un `iframe` con `sandbox`. La web avisa de ello justo debajo de los vídeos.
 - **Enlaces externos** con `rel="noopener"`.
 - **Sin secretos:** no hay claves ni tokens en el código. `.gitignore` bloquea `.env`, claves y certificados para que nunca se suban por error. No añadas aquí contraseñas ni claves de API.
 - **Reservas por WhatsApp:** el formulario solo compone un enlace `wa.me` con el mensaje. Los datos del cliente no pasan por ningún servidor de la web.
@@ -75,14 +78,15 @@ Esta web no tiene formularios que envíen datos ni servidor, por lo que la super
 - **Cabeceras HTTP:** GitHub Pages no permite configurarlas. Si el restaurante pasa a Netlify o Cloudflare Pages, el archivo `_headers` ya incluye CSP completa con `frame-ancestors`, HSTS, `nosniff` y `Permissions-Policy`.
 - Activa en GitHub **Settings → Code security** (Dependabot alerts) y, en la cuenta, la verificación en dos pasos.
 
-Si añades algo nuevo (un mapa de Google, analítica, un formulario con servicio externo) tendrás que ampliar la CSP del `<head>` y de `_headers`, y avisar de ello en la política de privacidad.
+Si añades algo nuevo (un mapa de Google, otra analítica, un formulario con servicio externo) tendrás que ampliar la CSP del `<head>` y de `_headers`, y avisar de ello en la política de privacidad.
 
 ## Antes de publicar
 
 - Confirma con el restaurante que los **precios, el horario y el teléfono** son los vigentes.
 - Las fotos y los textos proceden de la web actual del restaurante. Confirma que tienes permiso para reutilizarlos.
 - El texto de las reseñas es el publicado en Google. Mantén el enlace a las reseñas originales.
-- Añade una **política de privacidad** si más adelante incorporas formularios, analítica o mapas.
+- Los vídeos de TikTok son contenido del propio restaurante. Revisa que quienes salen en ellos estén de acuerdo en que se muestren en la web.
+- Añade una **política de privacidad** que mencione GoatCounter y TikTok. Cualquier formulario, mapa o analítica nueva debe constar ahí también.
 
 ## Créditos
 

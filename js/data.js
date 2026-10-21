@@ -90,5 +90,50 @@ const REVS = [
 /* Domingo a jueves 08:00-23:00, viernes y sábado 08:00-00:00 (lunes primero) */
 const HOURS = [['08:00','23:00'],['08:00','23:00'],['08:00','23:00'],['08:00','23:00'],['08:00','00:00'],['08:00','00:00'],['08:00','23:00']];
 
-w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS };
+/* Vídeos de TikTok (@nayambarcelona). id = número que aparece al final de la URL del vídeo.
+   La portada va en assets/img/tiktok-ID.webp (formato vertical 9:16). views es solo orientativo. */
+const VIDEOS = [
+ {
+  "id": "7696513662965550358",
+  "title": "¿De quién es el restaurante?…",
+  "views": 781300
+ },
+ {
+  "id": "7695094084620307734",
+  "title": "Estos son los 3 ingredientes favoritos del morad en una pizza",
+  "views": 888900
+ },
+ {
+  "id": "7690652881128656150",
+  "title": "Esto es lo que desayuna el morad…",
+  "views": 699600
+ },
+ {
+  "id": "7692433735270042902",
+  "title": "El morad con su gente en nayam…",
+  "views": 593900
+ },
+ {
+  "id": "7697612677270474006",
+  "title": "Esto es lo que come el Morad después de un concierto…",
+  "views": 118600
+ },
+ {
+  "id": "7679512320468389142",
+  "title": "Nuevo horario: Abrimos a las 08:00 para ofreceros los mejores desayun…",
+  "views": 525300
+ },
+ {
+  "id": "7686087757613108502",
+  "title": "el plato más caro de nuestra carta",
+  "views": 419400
+ },
+ {
+  "id": "7681001677809405206",
+  "title": "Estos son sus platos favoritos…",
+  "views": 355800
+ }
+];
+
+w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS, VIDEOS: VIDEOS };
 })(window);
