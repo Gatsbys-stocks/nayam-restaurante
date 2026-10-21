@@ -245,3 +245,9 @@ footer small{color:var(--muted)}
 }
 .tt-cta{margin-top:1.4rem}
 .tt-note{margin-top:.8rem}
+
+/* pie legal */
+footer .legal{flex-basis:100%;text-align:center;display:flex;flex-direction:column;gap:.35rem;padding-top:1.4rem;margin-top:.4rem;border-top:1px solid var(--line)}
+footer .legal p{margin:0}
+footer .legal .credit{color:var(--muted)}
+footer .legal .credit b{color:var(--fg);font-weight:700}
