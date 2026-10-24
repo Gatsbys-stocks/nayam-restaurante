@@ -56,6 +56,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 | Horario | `js/data.js` (`HOURS`, lunes primero) **y** el bloque JSON-LD de `index.html` |
 | Reseñas | `js/data.js` (`REVS`) |
 | Fotos que rotan en la portada | `index.html`, bloque `<div class="slides">` (usa fotos de `assets/img/`) |
+| Fotos de clientes de Google | `js/data.js` (`GPHOTOS`) y `assets/img/google-N-s.webp` / `-l.webp` |
 | Vídeos de TikTok | `js/data.js` (`VIDEOS`): `id` es el número al final de la URL del vídeo; la portada va en `assets/img/tiktok-ID.webp` (vertical 9:16) |
 | Teléfono de reservas (WhatsApp) | `js/data.js` (`WA`, solo dígitos con prefijo) y los enlaces `tel:` de `index.html` |
 | Textos de la web | `js/i18n.js` |
@@ -98,6 +99,7 @@ Si añades algo nuevo (un mapa de Google, otra analítica, un formulario con ser
 - Confirma con el restaurante que los **precios, el horario y el teléfono** son los vigentes.
 - Las fotos y los textos proceden de la web actual del restaurante. Confirma que tienes permiso para reutilizarlos.
 - El texto de las reseñas es el publicado en Google. Mantén el enlace a las reseñas originales.
+- Las fotos de la galería «Desde Google» las publicaron clientes en Google Maps (se quitaron sus metadatos). Pide permiso al restaurante, y si puedes a los autores, o cámbialas por fotos propias del local.
 - Los vídeos de TikTok son contenido del propio restaurante. Revisa que quienes salen en ellos estén de acuerdo en que se muestren en la web.
 - Añade una **política de privacidad** que mencione GoatCounter y TikTok. Cualquier formulario, mapa o analítica nueva debe constar ahí también.
 

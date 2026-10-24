@@ -135,5 +135,16 @@ const VIDEOS = [
  }
 ];
 
-w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS, VIDEOS: VIDEOS };
+/* Fotos de clientes publicadas en Google Maps: [archivo, [alt ES, alt EN], forma p=vertical s=cuadrada l=horizontal] */
+const GPHOTOS = [
+  ['google-1',['El comedor de Nayam con mesas de madera y butacas grises','Nayam dining room with wooden tables and grey armchairs'],'p'],
+  ['google-2',['Hamburguesa con patatas y zumos sobre una tabla de madera','Burger with fries and juices on a wooden board'],'s'],
+  ['google-3',['Café con leche y postre con chocolate','Latte and a chocolate dessert'],'p'],
+  ['google-4',['Plato de verduras sobre mesa de madera','Vegetable dish on a wooden table'],'p'],
+  ['google-5',['Brochetas de pollo con patatas','Chicken skewers with fries'],'p'],
+  ['google-6',['Hamburguesa con patatas en tabla de madera','Burger with fries on a wooden board'],'p'],
+  ['google-7',['Tagliatelle en plato blanco','Tagliatelle in a white bowl'],'l']
+];
+
+w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS, VIDEOS: VIDEOS, GPHOTOS: GPHOTOS };
 })(window);

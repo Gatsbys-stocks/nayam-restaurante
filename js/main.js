@@ -1,7 +1,7 @@
 /* Lógica de la página: idioma, carta, galería, reservas por WhatsApp y horario. Sin dependencias. */
 (function () {
 'use strict';
-const { WA, MENU, STRIP, REVS, HOURS, VIDEOS } = window.NAYAM_DATA;
+const { WA, MENU, STRIP, REVS, HOURS, VIDEOS, GPHOTOS } = window.NAYAM_DATA;
 const T = window.NAYAM_I18N;
 const IC = {
   ig:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/>',
@@ -132,6 +132,14 @@ if('IntersectionObserver' in window){
   ttio.observe($('#ttframe'));
 } else { playVideo(0, true); }
 
+/* Fotos de clientes de Google: cinta que se desplaza sola (se repite para el bucle) */
+function renderGP(){
+  const l = L_();
+  const one = (g,dup)=>`<button type="button" class="gp ${g[2]}${dup?' dup':''}" data-g="${GPHOTOS.indexOf(g)}" ${dup?'aria-hidden="true" tabindex="-1"':`aria-label="${esc(g[1][l])}"`}><img src="${img(g[0])}" alt="" loading="lazy"></button>`;
+  $('#track').innerHTML = GPHOTOS.map(g=>one(g,false)).join('') + GPHOTOS.map(g=>one(g,true)).join('');
+}
+$('#track').addEventListener('click',e=>{ const b=e.target.closest('[data-g]'); if(!b) return; const g=GPHOTOS[+b.dataset.g]; openLbSimple([g[0],g[1]]); });
+
 function applyLang(){
   document.documentElement.lang = lang;
   $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -149,7 +157,7 @@ function applyLang(){
   $('#revs').innerHTML = REVS.map(r=>`<figure class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>“${esc(r[1].trim())}”</p><figcaption class="who"><span class="av" aria-hidden="true">${esc(r[0][0])}</span><span><b>${esc(r[0])}</b>${t('revSrc')}</span></figcaption></figure>`).join('');
   $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb'],['https://x.com/nayambarcelona','X','x']]
     .map(s=>`<a href="${s[0]}" target="_blank" rel="noopener" aria-label="${s[1]}">${svg(s[2])}</a>`).join('');
-  renderVideos(); renderMenu(); renderHours(); fillForm(); setHH();
+  renderVideos(); renderGP(); renderMenu(); renderHours(); fillForm(); setHH();
 }
 $('#lang').onclick = ()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} applyLang(); };
 function closeNav(){ $('#mnav').hidden=true; $('#burger').setAttribute('aria-expanded','false'); setHH(); }
@@ -174,7 +182,7 @@ applyLang();
   }
   if(!('IntersectionObserver' in window)) return;
   document.documentElement.classList.add('js-anim');
-  const els = $$('.head,.moment,.card,.room figure,.facade,.revs,.ttwrap,.rate,.about,.bookgrid');
+  const els = $$('.head,.marquee,.moment,.card,.room figure,.facade,.revs,.ttwrap,.rate,.about,.bookgrid');
   const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:.05});
   els.forEach(el=>{ el.classList.add('reveal'); const sib=[...el.parentElement.children].indexOf(el); el.style.transitionDelay=(Math.min(sib,4)*70)+'ms'; io.observe(el); });
 })();
