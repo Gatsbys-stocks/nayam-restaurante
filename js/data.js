@@ -90,8 +90,8 @@ const REVS = [
 /* Domingo a jueves 08:00-00:00, viernes y sábado 08:00-01:00 (lunes primero) */
 const HOURS = [['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','01:00'],['08:00','01:00'],['08:00','00:00']];
 
-/* Vídeos de TikTok (@nayambarcelona). id = número que aparece al final de la URL del vídeo.
-   La portada va en assets/img/tiktok-ID.webp (formato vertical 9:16). views es solo orientativo. */
+/* Vídeos del TikTok del restaurante (@nayambarcelona). id = número al final de la URL del vídeo en TikTok.
+   El clip va en assets/video/ID.mp4 (vertical 9:16, H.264) y la portada en assets/img/tiktok-ID.webp. views es orientativo. */
 const VIDEOS = [
  {
   "id": "7696513662965550358",
@@ -132,6 +132,26 @@ const VIDEOS = [
   "id": "7681001677809405206",
   "title": "Estos son sus platos favoritos…",
   "views": 355800
+ },
+ {
+  "id": "7693908616977403158",
+  "title": "hoy tenemos doble visita de nuestros primos",
+  "views": 578300
+ },
+ {
+  "id": "7693544577243860246",
+  "title": "5 preguntas con el morad…",
+  "views": 223000
+ },
+ {
+  "id": "7684716980481395990",
+  "title": "Se ha escapado de casa…",
+  "views": 220200
+ },
+ {
+  "id": "7682041349385784598",
+  "title": "Respondiendo a comentarios…",
+  "views": 430100
  }
 ];
 

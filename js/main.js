@@ -90,47 +90,64 @@ function renderHours(){
   $('span',st).textContent = isOpen ? t('open')+(openFromPrev?prev[1]:h[1]) : t('closed')+(m<o?h[0]:HOURS[(today+1)%7][0]);
 }
 
-/* Vídeos de TikTok: uno grande reproduciéndose y miniaturas al lado para cambiar */
-let ttIndex = 0, ttLoaded = false;
+/* Vídeos: un clip grande que se reproduce solo (sin sonido) al verse y miniaturas para cambiar de clip */
+let ttIndex = 0, ttUserPaused = false;
+const calmMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 const ttNf = () => new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',{notation:'compact',maximumFractionDigits:1});
+const ttVid = () => $('#ttvideo');
 function renderVideos(){
   const nf = ttNf();
   $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" role="listitem" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(v.title)}" ${i===ttIndex?'aria-current="true"':''}>
     <img src="assets/img/tiktok-${v.id}.webp" alt="" loading="lazy" width="270" height="480">
     <span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
     <span class="ttviews">${nf.format(v.views)}</span></button>`).join('');
-  renderCaption();
-  if(!ttLoaded){ // portada hasta que el reproductor se carga
-    $('#ttframe').innerHTML = `<img src="assets/img/tiktok-${VIDEOS[ttIndex].id}.webp" alt="">`;
-  }
+  renderCaption(); renderSound();
+  $('#ttpp').setAttribute('aria-label', ttVid().paused ? t('ttPlay') : t('ttPause'));
 }
 function renderCaption(){
   const v = VIDEOS[ttIndex];
   $('#ttcap').innerHTML = `${esc(v.title)}<small>${ttNf().format(v.views)} ${t('ttViews')}</small>`;
+  $('#ttlink').href = 'https://www.tiktok.com/@nayambarcelona/video/'+encodeURIComponent(v.id);
 }
-function playVideo(i, muted){
-  ttIndex = i; ttLoaded = true;
-  const v = VIDEOS[i];
-  const f = document.createElement('iframe');
-  f.src = 'https://www.tiktok.com/player/v1/'+encodeURIComponent(v.id)+'?autoplay=1&music_info=1&description=1'+(muted?'&muted=1':'');
-  f.title = 'TikTok @nayambarcelona: '+v.title;
-  f.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture; clipboard-write';
-  f.setAttribute('allowfullscreen','');
-  f.setAttribute('sandbox','allow-scripts allow-same-origin allow-popups allow-presentation');
-  f.referrerPolicy = 'strict-origin-when-cross-origin';
-  $('#ttframe').replaceChildren(f);
+function renderSound(){
+  const m = ttVid().muted;
+  $('#ttsound').setAttribute('aria-pressed', String(!m));
+  $('#ttsound').setAttribute('aria-label', m ? t('ttUnmute') : t('ttMute'));
+  $('#ttwave').style.display = m ? 'none' : '';
+}
+function loadVideo(i, autoplay){
+  ttIndex = i;
+  const v = VIDEOS[i], el = ttVid();
+  el.poster = 'assets/img/tiktok-'+v.id+'.webp';
+  el.src = 'assets/video/'+v.id+'.mp4';
   $$('.ttthumb').forEach(b=>{ if(+b.dataset.i===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current'); });
   renderCaption();
+  if(autoplay){ ttUserPaused = false; el.play().catch(()=>{}); }
 }
-$('#tt').addEventListener('click',e=>{
-  const b = e.target.closest('.ttthumb'); if(!b) return;
-  playVideo(+b.dataset.i, false);
-});
-/* el vídeo grande empieza solo (sin sonido, como exigen los navegadores) al llegar a la sección */
-if('IntersectionObserver' in window){
-  const ttio = new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){ ttio.disconnect(); if(!ttLoaded) playVideo(ttIndex, true); } },{rootMargin:'300px 0px'});
-  ttio.observe($('#ttframe'));
-} else { playVideo(0, true); }
+function nextVideo(){ loadVideo((ttIndex+1)%VIDEOS.length, true); }
+(function(){
+  const el = ttVid(), frame = $('#ttframe');
+  el.addEventListener('play',()=>{ frame.classList.add('playing'); $('#ttpp').setAttribute('aria-label',t('ttPause')); });
+  el.addEventListener('pause',()=>{ frame.classList.remove('playing'); $('#ttpp').setAttribute('aria-label',t('ttPlay')); });
+  el.addEventListener('timeupdate',()=>{ if(el.duration) $('#ttprog').style.width = (100*el.currentTime/el.duration)+'%'; });
+  el.addEventListener('ended',()=>{ if(!calmMotion) nextVideo(); });
+  el.addEventListener('volumechange',renderSound);
+  const toggle = ()=>{ if(el.paused){ ttUserPaused=false; el.play().catch(()=>{}); } else { ttUserPaused=true; el.pause(); } };
+  $('#ttpp').addEventListener('click',toggle);
+  el.addEventListener('click',toggle);
+  $('#ttsound').addEventListener('click',()=>{ el.muted = !el.muted; });
+  $('#tt').addEventListener('click',e=>{ const b=e.target.closest('.ttthumb'); if(b) loadVideo(+b.dataset.i, true); });
+  loadVideo(0,false);
+  // arranca al ver el vídeo y se pausa al salir de pantalla
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>{
+      es.forEach(en=>{
+        if(en.isIntersecting && en.intersectionRatio>=.5){ if(!calmMotion && !ttUserPaused && el.paused) el.play().catch(()=>{}); }
+        else if(!el.paused){ el.pause(); }
+      });
+    },{threshold:[0,.5]}).observe(frame);
+  }
+})();
 
 /* Fotos de clientes de Google: cinta que se desplaza sola (se repite para el bucle) */
 function renderGP(){
