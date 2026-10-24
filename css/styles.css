@@ -105,37 +105,45 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.7;
 .strip img{width:100%;height:100%;object-fit:cover}
 .strip span{position:absolute;inset:auto 0 0 0;padding:2rem .9rem .8rem;color:var(--hero-fg);font-weight:700;text-align:left;font-size:.95rem;background:linear-gradient(transparent,rgba(11,16,12,.75))}
 
-/* carta */
-.tabs{display:inline-flex;padding:.3rem;border:1px solid var(--line);background:var(--surface);border-radius:99px;margin-bottom:1rem}
+/* carta (estilo lista de restaurante: nombre ······ precio) */
+.carta{padding-top:0}
+.menubanner{position:relative;isolation:isolate;color:var(--hero-fg);text-align:center;overflow:hidden;margin-bottom:2rem}
+.menubanner>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.menubanner::after{content:"";position:absolute;inset:0;z-index:-1;background:rgba(11,16,12,.7)}
+.menubanner .wrap{padding-block:clamp(52px,10vw,104px);display:flex;flex-direction:column;align-items:center;gap:.3rem}
+.menubanner h2{margin:.4rem 0 0}
+.menubanner p{max-width:46ch;margin:.5rem 0 0;opacity:.9}
+.tabs{display:flex;width:fit-content;max-width:100%;margin-inline:auto;padding:.3rem;border:1px solid var(--line);background:var(--surface);border-radius:99px;margin-bottom:1.2rem}
 .tabs button{border:0;background:none;border-radius:99px;padding:.7rem 1.2rem;font-weight:700;font-size:.92rem;line-height:1}
 .tabs button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
-.cats{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh,60px));z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);
-  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-block:1px solid var(--line)}
-.cats .row{display:flex;gap:.5rem;overflow-x:auto;padding-block:.7rem;scrollbar-width:none}
-.cats .row::-webkit-scrollbar{display:none}
-.cchip{flex:none;border:1px solid var(--line);background:var(--surface);border-radius:99px;padding:.55rem 1rem;font-weight:500;font-size:.9rem;line-height:1;text-decoration:none;white-space:nowrap}
-.cchip[aria-current="true"]{background:var(--accent);color:var(--accent-ink);border-color:transparent;font-weight:700}
-.cat{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hh,60px) + 66px);padding-top:2.2rem}
-.cat h3{font:600 clamp(1.8rem,5vw,2.4rem)/1.1 var(--f-display);margin:0 0 1rem}
-.items{display:grid;gap:.75rem;grid-template-columns:1fr}
-@media(min-width:900px){.items{grid-template-columns:1fr 1fr;gap:.9rem 1.1rem}}
-.item{display:flex;gap:.9rem;align-items:stretch;padding:.7rem;border-radius:18px;background:var(--surface);border:1px solid var(--line);min-width:0;text-align:left;width:100%;font:inherit;color:inherit}
-button.item{cursor:zoom-in}
-.item .ph{flex:none;width:104px;aspect-ratio:1;border-radius:12px;overflow:hidden;background:var(--surface2);align-self:flex-start}
-.item .ph img{width:100%;height:100%;object-fit:cover}
-.item .tx{min-width:0;flex:1;display:flex;flex-direction:column;gap:.25rem;padding-block:.15rem}
-.item .row1{display:flex;gap:.8rem;justify-content:space-between;align-items:baseline}
-.item h4{margin:0;font:700 1.02rem/1.25 var(--f-body)}
-.item p{margin:0;color:var(--muted);font-size:.9rem;line-height:1.45}
-.price{font:700 1.2rem/1 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap}
-@media(min-width:520px){.item .ph{width:128px}}
-.plist{margin:0;padding:0;list-style:none;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:.4rem 1.1rem}
-.plist li{display:flex;gap:.8rem;align-items:baseline;padding:.7rem 0;border-bottom:1px solid var(--line)}
-.plist li:last-child{border-bottom:0}
-.plist .n{flex:0 1 auto;font-weight:500;min-width:0}
-.plist .dots{flex:1;border-bottom:1.5px dotted var(--line);transform:translateY(-4px);min-width:12px}
-.plist small{display:block;color:var(--muted);font-weight:400}
-.note{margin:1.2rem 0 0;color:var(--muted);font-size:.9rem}
+.mcats{display:flex;gap:.2rem 1.7rem;overflow-x:auto;padding-bottom:.2rem;border-bottom:1px solid var(--line);margin-bottom:2rem;scrollbar-width:none}
+.mcats::-webkit-scrollbar{display:none}
+.mcat{flex:none;background:none;border:0;border-bottom:2px solid transparent;padding:.8rem .1rem;font:700 .8rem/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.mcat:hover{color:var(--fg)}
+.mcat[aria-selected="true"]{color:var(--fg);border-bottom-color:var(--accent-text)}
+@media(min-width:900px){.mcats{flex-wrap:wrap;justify-content:center;overflow:visible}}
+.mlist{display:grid;gap:2rem 3rem;grid-template-columns:1fr}
+@media(min-width:900px){.mlist{grid-template-columns:1fr 1fr}}
+.dish{display:flex;flex-direction:column;gap:.9rem;min-width:0}
+.dish .ph{display:block;width:100%;padding:0;border:0;border-radius:14px;overflow:hidden;background:var(--surface2);aspect-ratio:16/10;cursor:zoom-in}
+.dish .ph img{width:100%;height:100%;object-fit:cover}
+.dish .body{min-width:0}
+.dish .row1{display:flex;gap:.7rem;align-items:baseline}
+.dish h4{margin:0;font:600 1.45rem/1.15 var(--f-display)}
+.dots{flex:1;border-bottom:1.5px dotted color-mix(in srgb,var(--fg) 38%,transparent);transform:translateY(-.3rem);min-width:14px}
+.price{font:700 1.3rem/1 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--accent-text)}
+.dish p{margin:.4rem 0 0;color:var(--muted);font-size:.95rem;line-height:1.5}
+@media(min-width:900px){
+  .dish{flex-direction:row;gap:1.2rem;align-items:flex-start}
+  .dish .ph{flex:none;width:150px;aspect-ratio:1}
+  .dish .body{flex:1}
+}
+.plist{margin:0;padding:0;list-style:none}
+.plist li{display:flex;gap:.8rem;align-items:baseline;padding:.85rem 0;border-bottom:1px solid var(--line)}
+.plist .n{flex:0 1 auto;font:600 1.3rem/1.2 var(--f-display);min-width:0}
+.plist small{display:block;color:var(--muted);font:400 .9rem/1.4 var(--f-body)}
+@media(min-width:900px){.plist{columns:2;column-gap:3rem}.plist li{break-inside:avoid}}
+.note{margin:1.6rem 0 0;color:var(--muted);font-size:.9rem;text-align:center}
 
 /* reviews */
 .rate{display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
@@ -251,3 +259,4 @@ footer .legal{flex-basis:100%;text-align:center;display:flex;flex-direction:colu
 footer .legal p{margin:0}
 footer .legal .credit{color:var(--muted)}
 footer .legal .credit b{color:var(--fg);font-weight:700}
+.menubanner .eyebrow{color:#e8ff63}

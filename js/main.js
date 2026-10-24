@@ -22,23 +22,22 @@ const price = p => Array.isArray(p) ? p.map(money).join(' / ') : money(p);
 const esc = s => String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const img = (n,s='s') => 'assets/img/'+n+'-'+s+'.webp';
 
+let cat = null;
 function renderMenu(){
   const cats = MENU[tab], l = L_();
+  if(!cat || !cats.some(c=>c.id===cat)) cat = cats[0].id;
   $$('#tabs button').forEach(b=>{ const on=b.dataset.tab===tab; b.setAttribute('aria-selected',String(on)); b.tabIndex = on?0:-1; });
   $('#tab-food').textContent = t('tabFood'); $('#tab-breakfast').textContent = t('tabBreak');
-  $('#chips').innerHTML = cats.map((c,i)=>`<a class="cchip" href="#c-${c.id}" data-cat="${c.id}" ${i===0?'aria-current="true"':''}>${c.t[l]}</a>`).join('');
+  $('#chips').innerHTML = cats.map(c=>`<button type="button" role="tab" class="mcat" data-cat="${c.id}" aria-selected="${c.id===cat}">${c.t[l]}</button>`).join('');
   const plist = (arr)=>`<ul class="plist">${arr.map(x=>`<li><span class="n">${esc(x.n[l])}${x.d?`<small>${esc(x.d[l])}</small>`:''}</span><span class="dots"></span><span class="price">${price(x.p)}</span></li>`).join('')}</ul>`;
-  $('#menu').innerHTML = cats.map(c=>{
-    let body = '';
-    if(c.items) body += `<div class="items">${c.items.map((x,i)=>{
-      const inner = `<span class="ph"><img src="${img(x.i)}" alt="" loading="lazy" width="560" height="420"></span>
-        <span class="tx"><span class="row1"><h4>${esc(x.n[l])}</h4><span class="price">${price(x.p)}</span></span>${x.d[l]?`<p>${esc(x.d[l])}</p>`:''}</span>`;
-      return `<button type="button" class="item" data-open="${c.id}:${i}" aria-label="${esc(x.n[l])}, ${price(x.p)}">${inner}</button>`;}).join('')}</div>`;
-    if(c.list) body += plist(c.list);
-    if(c.extra) body += `<h3 class="sub-title">${c.extra.t[l]}</h3>`+plist(c.extra.list);
-    return `<div class="cat" id="c-${c.id}"><h3>${c.t[l]}</h3>${body}</div>`;
-  }).join('') + (tab==='breakfast'?`<p class="note">${t('breakNote')}</p>`:'');
-  watchCats();
+  const c = cats.find(x=>x.id===cat);
+  let body = '';
+  if(c.items) body += `<div class="mlist">${c.items.map((x,i)=>`<article class="dish">
+      <button type="button" class="ph" data-open="${c.id}:${i}" aria-label="${esc(x.n[l])}: ${t('zoom')}"><img src="${img(x.i)}" alt="" loading="lazy" width="560" height="420"></button>
+      <div class="body"><div class="row1"><h4>${esc(x.n[l])}</h4><span class="dots"></span><span class="price">${price(x.p)}</span></div>${x.d[l]?`<p>${esc(x.d[l])}</p>`:''}</div></article>`).join('')}</div>`;
+  if(c.list) body += plist(c.list);
+  if(c.extra) body += `<h3 class="sub-title">${c.extra.t[l]}</h3>`+plist(c.extra.list);
+  $('#menu').innerHTML = `<div role="tabpanel" aria-label="${esc(c.t[l])}">${body}</div>` + (tab==='breakfast'?`<p class="note">${t('breakNote')}</p>`:'');
 }
 const findItem = key => { const [cid,i]=key.split(':'); const c=MENU[tab].find(x=>x.id===cid); return c.items[+i]; };
 function openLb(x){
@@ -54,20 +53,9 @@ $('#lbx').onclick = closeLb;
 $('#lb').addEventListener('click',e=>{ if(e.target.id==='lb') closeLb(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(!$('#lb').hidden) closeLb(); else closeNav(); } });
 
-$('#tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-tab]'); if(b){ tab=b.dataset.tab; renderMenu(); } });
-$$('.moment[data-tab]').forEach(a=>a.addEventListener('click',()=>{ tab=a.dataset.tab; renderMenu(); }));
-
-let io;
-function watchCats(){
-  if(io) io.disconnect();
-  if(!('IntersectionObserver' in window)) return;
-  io = new IntersectionObserver(es=>{
-    es.forEach(en=>{ if(en.isIntersecting){ const id=en.target.id.slice(2);
-      $$('.cchip').forEach(c=>c.setAttribute('aria-current',String(c.dataset.cat===id)));
-      const a=$('.cchip[aria-current="true"]'); if(a) $('#chips').scrollTo({left:a.offsetLeft-16,behavior:'smooth'}); } });
-  },{rootMargin:'-30% 0px -60% 0px'});
-  $$('.cat').forEach(c=>io.observe(c));
-}
+$('#tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-tab]'); if(b){ tab=b.dataset.tab; cat=null; renderMenu(); } });
+$('#chips').addEventListener('click',e=>{ const b=e.target.closest('[data-cat]'); if(b){ cat=b.dataset.cat; renderMenu(); } });
+$$('.moment[data-tab]').forEach(a=>a.addEventListener('click',()=>{ tab=a.dataset.tab; cat=null; renderMenu(); }));
 
 /* WhatsApp booking */
 function waUrl(){
