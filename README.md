@@ -75,10 +75,9 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 El clip grande se reproduce solo y sin sonido al llegar a esa sección, pasa al siguiente al terminar y se pausa al salir de pantalla. Con «reducir movimiento» activado no arranca solo.
 
-## Vídeo de la portada y cifras
+## Cifras bajo la portada
 
-- **Portada:** en móvil el clip de fondo ocupa toda la portada y en ordenador sale como tarjeta vertical a la derecha. Es el clip `assets/video/7681001677809405206.mp4`; para cambiarlo, edita el `<video id="heroVideo">` de `index.html`. Empieza al cargar la página, va sin sonido, se repite, tiene botón de pausa y no arranca si el visitante tiene activado «reducir movimiento» o «ahorro de datos».
-- **Cifras bajo la portada:** se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.
+Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.
 
 ## Seguridad
 

@@ -171,23 +171,6 @@ if('IntersectionObserver' in window){
   sio.observe($('#stats'));
 }
 
-/* Portada: el clip del local se reproduce en bucle y sin sonido (con botón de pausa) */
-(function(){
-  const v = $('#heroVideo'), media = $('#heromedia'), hero = $('.hero'), btn = $('#heroPause');
-  let userPaused = false;
-  const icon = () => { $('#heroPauseIcon').setAttribute('d', v.paused ? 'M8 5v14l11-7z' : 'M8 5v14M16 5v14'); btn.setAttribute('aria-pressed', String(v.paused)); btn.setAttribute('aria-label', v.paused ? t('heroPlay') : t('heroPause')); };
-  v.addEventListener('playing',()=>{ media.classList.add('on'); hero.classList.add('vid'); icon(); });
-  v.addEventListener('pause',icon);
-  btn.addEventListener('click',()=>{ if(v.paused){ userPaused=false; v.play().catch(()=>{}); } else { userPaused=true; v.pause(); } });
-  const saver = navigator.connection && navigator.connection.saveData;
-  const start = ()=>{ if(!calmMotion && !saver && !userPaused) v.play().catch(()=>{}); };
-  if(document.readyState==='complete') setTimeout(start,300); else window.addEventListener('load',()=>setTimeout(start,300));
-  if('IntersectionObserver' in window){
-    new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ if(v.readyState>0) start(); } else if(!v.paused){ v.pause(); } }),{threshold:.15}).observe(hero);
-  }
-  icon();
-})();
-
 /* Fotos de clientes de Google: cinta que se desplaza sola (se repite para el bucle) */
 function renderGP(){
   const l = L_();
