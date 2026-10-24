@@ -55,6 +55,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 | Precios, platos, descripciones | `js/data.js` (objeto `MENU`, con texto en español e inglés) |
 | Horario | `js/data.js` (`HOURS`, lunes primero) **y** el bloque JSON-LD de `index.html` |
 | Reseñas | `js/data.js` (`REVS`) |
+| Fotos que rotan en la portada | `index.html`, bloque `<div class="slides">` (usa fotos de `assets/img/`) |
 | Vídeos de TikTok | `js/data.js` (`VIDEOS`): `id` es el número al final de la URL del vídeo; la portada va en `assets/img/tiktok-ID.webp` (vertical 9:16) |
 | Teléfono de reservas (WhatsApp) | `js/data.js` (`WA`, solo dígitos con prefijo) y los enlaces `tel:` de `index.html` |
 | Textos de la web | `js/i18n.js` |
@@ -62,6 +63,18 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 | Dirección, email, redes | `index.html` (sección contacto, pie y bloque JSON-LD) y `js/main.js` (redes del pie) |
 
 **Fotos nuevas:** convierte la foto a WebP y guarda dos copias en `assets/img/`: `plato-s.webp` (unos 560 px de ancho) y `plato-l.webp` (unos 1200 px). Luego usa `plato` como primer valor del plato en `js/data.js`. Un plato sin foto se muestra como lista de precios.
+
+## Vídeo en la portada (opcional)
+
+Las animaciones actuales son un pase de fotos con zoom suave en la portada, aparición al hacer scroll, el neón parpadeando y los vídeos de TikTok. Todo se desactiva si el visitante pide «reducir movimiento» en su dispositivo.
+
+Si el restaurante te da un vídeo propio (MP4 en H.264, vertical u horizontal, de 5 a 15 segundos y menos de 4 MB):
+1. Guárdalo como `assets/video/portada.mp4`.
+2. En `index.html`, dentro de `<div class="slides">`, añade como primer elemento:
+   `<video class="on" autoplay muted loop playsinline poster="assets/img/local-banqueta-l.webp"><source src="assets/video/portada.mp4" type="video/mp4"></video>`
+3. En `css/styles.css`, la regla `.hero .slides img` también debe aplicarse a `video` (añade `.hero .slides video` al selector).
+
+La política de seguridad ya permite vídeo propio (`media-src 'self'`).
 
 ## Seguridad
 

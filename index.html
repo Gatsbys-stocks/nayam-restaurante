@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#0e1410">
 
 <!-- Seguridad: GitHub Pages no permite cabeceras HTTP, así que la política va en una meta. Sin scripts ni estilos en línea. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' https://9-s.goatcounter.com; connect-src https://9-s.goatcounter.com; frame-src https://www.tiktok.com; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://gc.zgo.at; style-src 'self'; font-src 'self'; img-src 'self' https://9-s.goatcounter.com; connect-src https://9-s.goatcounter.com; frame-src https://www.tiktok.com; media-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
 <meta property="og:type" content="restaurant">
@@ -37,8 +37,8 @@
     "addressCountry": "ES"
   },
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "23:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "08:00", "closes": "00:00" }
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "00:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "08:00", "closes": "01:00" }
   ],
   "sameAs": [
     "https://www.instagram.com/nayambarcelona",
@@ -66,7 +66,12 @@
 
 <main id="inicio">
   <div class="hero">
-    <img src="assets/img/local-banqueta-l.webp" alt="" data-alt="altHero" fetchpriority="high">
+    <div class="slides" id="slides" aria-hidden="true">
+      <img class="on" src="assets/img/local-banqueta-l.webp" alt="" fetchpriority="high">
+      <img src="assets/img/local-neon-l.webp" alt="" loading="lazy">
+      <img src="assets/img/local-sala-l.webp" alt="" loading="lazy">
+      <img src="assets/img/local-arcos-l.webp" alt="" loading="lazy">
+    </div>
     <div class="wrap">
       <p class="neon" aria-hidden="true">Nayam</p>
       <h1 data-i18n="h1"></h1>
@@ -135,7 +140,7 @@
   <section id="resenas">
     <div class="wrap">
       <div class="head"><span class="eyebrow" data-i18n="revEyebrow"></span><h2 data-i18n="revTitle"></h2></div>
-      <div class="rate"><b>5,0</b><div><div class="stars" aria-hidden="true">★★★★★</div><span class="hint" data-i18n="revSrc"></span></div>
+      <div class="rate"><b>4,8</b><div><div class="stars" aria-hidden="true">★★★★★</div><span class="hint" data-i18n="revSrc"></span></div>
         <div class="rowbtn push-right">
           <a class="btn line" href="https://share.google/Qy5UdTd4c7EKVeDJf" target="_blank" rel="noopener" data-i18n="revAll"></a>
           <a class="btn solid" href="https://www.google.com/maps/place//data=!4m3!3m2!1s0x12a4a3aa45550229:0xf9113d32ae199097!12e1?source=g.page.m._&amp;laa=merchant-review-solicitation" target="_blank" rel="noopener" data-i18n="revWrite"></a></div></div>

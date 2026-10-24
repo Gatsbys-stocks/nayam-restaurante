@@ -158,4 +158,24 @@ function setHH(){ document.documentElement.style.setProperty('--hh', $('#top').o
 addEventListener('resize',setHH);
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(setHH);
 applyLang();
+
+/* Animaciones: presentación de fotos en la portada y aparición suave al hacer scroll */
+(function(){
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(calm) return;
+  const imgs = $$('#slides img');
+  if(imgs.length>1){
+    let k = 0;
+    setInterval(()=>{
+      if(document.hidden) return;
+      imgs[k].classList.remove('on'); k = (k+1)%imgs.length;
+      const n = imgs[k]; n.style.animation='none'; void n.offsetWidth; n.style.animation=''; n.classList.add('on');
+    }, 6500);
+  }
+  if(!('IntersectionObserver' in window)) return;
+  document.documentElement.classList.add('js-anim');
+  const els = $$('.head,.moment,.card,.room figure,.facade,.revs,.ttwrap,.rate,.about,.bookgrid');
+  const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:.05});
+  els.forEach(el=>{ el.classList.add('reveal'); const sib=[...el.parentElement.children].indexOf(el); el.style.transitionDelay=(Math.min(sib,4)*70)+'ms'; io.observe(el); });
+})();
 })();

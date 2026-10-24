@@ -87,8 +87,8 @@ const REVS = [
   ['Jean Andara','Excelente servicio, ambiente y personas, volveré 100% '],
   ['Y Hh','Local muy bonito y acogedor. La comida está deliciosa y se nota que es totalmente casera. Los camareros ofrecen un servicio excelente, siempre atentos y amables. ¡Muy recomendable!']];
 
-/* Domingo a jueves 08:00-23:00, viernes y sábado 08:00-00:00 (lunes primero) */
-const HOURS = [['08:00','23:00'],['08:00','23:00'],['08:00','23:00'],['08:00','23:00'],['08:00','00:00'],['08:00','00:00'],['08:00','23:00']];
+/* Domingo a jueves 08:00-00:00, viernes y sábado 08:00-01:00 (lunes primero) */
+const HOURS = [['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','01:00'],['08:00','01:00'],['08:00','00:00']];
 
 /* Vídeos de TikTok (@nayambarcelona). id = número que aparece al final de la URL del vídeo.
    La portada va en assets/img/tiktok-ID.webp (formato vertical 9:16). views es solo orientativo. */
