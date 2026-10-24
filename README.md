@@ -75,17 +75,10 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 El clip grande se reproduce solo y sin sonido al llegar a esa sección, pasa al siguiente al terminar y se pausa al salir de pantalla. Con «reducir movimiento» activado no arranca solo.
 
-## Vídeo en la portada (opcional)
+## Vídeo de la portada y cifras
 
-Las animaciones actuales son un pase de fotos con zoom suave en la portada, aparición al hacer scroll, el neón parpadeando y los vídeos de TikTok. Todo se desactiva si el visitante pide «reducir movimiento» en su dispositivo.
-
-Si el restaurante te da un vídeo propio (MP4 en H.264, vertical u horizontal, de 5 a 15 segundos y menos de 4 MB):
-1. Guárdalo como `assets/video/portada.mp4`.
-2. En `index.html`, dentro de `<div class="slides">`, añade como primer elemento:
-   `<video class="on" autoplay muted loop playsinline poster="assets/img/local-banqueta-l.webp"><source src="assets/video/portada.mp4" type="video/mp4"></video>`
-3. En `css/styles.css`, la regla `.hero .slides img` también debe aplicarse a `video` (añade `.hero .slides video` al selector).
-
-La política de seguridad ya permite vídeo propio (`media-src 'self'`).
+- **Portada:** en móvil el clip de fondo ocupa toda la portada y en ordenador sale como tarjeta vertical a la derecha. Es el clip `assets/video/7681001677809405206.mp4`; para cambiarlo, edita el `<video id="heroVideo">` de `index.html`. Empieza al cargar la página, va sin sonido, se repite, tiene botón de pausa y no arranca si el visitante tiene activado «reducir movimiento» o «ahorro de datos».
+- **Cifras bajo la portada:** se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.
 
 ## Seguridad
 

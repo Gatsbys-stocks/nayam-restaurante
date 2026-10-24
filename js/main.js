@@ -1,7 +1,7 @@
 /* Lógica de la página: idioma, carta, galería, reservas por WhatsApp y horario. Sin dependencias. */
 (function () {
 'use strict';
-const { WA, MENU, STRIP, REVS, HOURS, VIDEOS, GPHOTOS } = window.NAYAM_DATA;
+const { WA, MENU, STRIP, REVS, HOURS, VIDEOS, GPHOTOS, STATS } = window.NAYAM_DATA;
 const T = window.NAYAM_I18N;
 const IC = {
   ig:'<rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r=".8" fill="currentColor"/>',
@@ -149,6 +149,45 @@ function nextVideo(){ loadVideo((ttIndex+1)%VIDEOS.length, true); }
   }
 })();
 
+/* Cifras: se cuentan desde 0 cuando entran en pantalla */
+function statFmt(s, v){
+  const o = {minimumFractionDigits:s.dec, maximumFractionDigits:s.dec};
+  if(s.compact){ o.notation='compact'; o.maximumFractionDigits=1; o.minimumFractionDigits=0; }
+  return new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',o).format(v);
+}
+function renderStats(){
+  $('#statsList').innerHTML = STATS.map((s,i)=>`<li><b data-s="${i}">${statFmt(s,s.v)}</b><span>${esc(s.l[L_()])}</span></li>`).join('');
+}
+function countStats(){
+  if(calmMotion) return;
+  $$('#statsList b').forEach(b=>{
+    const s = STATS[+b.dataset.s], t0 = performance.now(), dur = 1400;
+    const step = now=>{ const p = Math.min(1,(now-t0)/dur), e = 1-Math.pow(1-p,3); b.textContent = statFmt(s, s.v*e); if(p<1) requestAnimationFrame(step); else b.textContent = statFmt(s, s.v); };
+    requestAnimationFrame(step);
+  });
+}
+if('IntersectionObserver' in window){
+  const sio = new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){ sio.disconnect(); countStats(); } },{threshold:.4});
+  sio.observe($('#stats'));
+}
+
+/* Portada: el clip del local se reproduce en bucle y sin sonido (con botón de pausa) */
+(function(){
+  const v = $('#heroVideo'), media = $('#heromedia'), hero = $('.hero'), btn = $('#heroPause');
+  let userPaused = false;
+  const icon = () => { $('#heroPauseIcon').setAttribute('d', v.paused ? 'M8 5v14l11-7z' : 'M8 5v14M16 5v14'); btn.setAttribute('aria-pressed', String(v.paused)); btn.setAttribute('aria-label', v.paused ? t('heroPlay') : t('heroPause')); };
+  v.addEventListener('playing',()=>{ media.classList.add('on'); hero.classList.add('vid'); icon(); });
+  v.addEventListener('pause',icon);
+  btn.addEventListener('click',()=>{ if(v.paused){ userPaused=false; v.play().catch(()=>{}); } else { userPaused=true; v.pause(); } });
+  const saver = navigator.connection && navigator.connection.saveData;
+  const start = ()=>{ if(!calmMotion && !saver && !userPaused) v.play().catch(()=>{}); };
+  if(document.readyState==='complete') setTimeout(start,300); else window.addEventListener('load',()=>setTimeout(start,300));
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ if(v.readyState>0) start(); } else if(!v.paused){ v.pause(); } }),{threshold:.15}).observe(hero);
+  }
+  icon();
+})();
+
 /* Fotos de clientes de Google: cinta que se desplaza sola (se repite para el bucle) */
 function renderGP(){
   const l = L_();
@@ -174,7 +213,7 @@ function applyLang(){
   $('#revs').innerHTML = REVS.map(r=>`<figure class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>“${esc(r[1].trim())}”</p><figcaption class="who"><span class="av" aria-hidden="true">${esc(r[0][0])}</span><span><b>${esc(r[0])}</b>${t('revSrc')}</span></figcaption></figure>`).join('');
   $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb'],['https://x.com/nayambarcelona','X','x']]
     .map(s=>`<a href="${s[0]}" target="_blank" rel="noopener" aria-label="${s[1]}">${svg(s[2])}</a>`).join('');
-  renderVideos(); renderGP(); renderMenu(); renderHours(); fillForm(); setHH();
+  renderVideos(); renderGP(); renderStats(); renderMenu(); renderHours(); fillForm(); setHH();
 }
 $('#lang').onclick = ()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} applyLang(); };
 function closeNav(){ $('#mnav').hidden=true; $('#burger').setAttribute('aria-expanded','false'); setHH(); }
@@ -199,7 +238,7 @@ applyLang();
   }
   if(!('IntersectionObserver' in window)) return;
   document.documentElement.classList.add('js-anim');
-  const els = $$('.head,.marquee,.moment,.card,.room figure,.facade,.revs,.ttwrap,.rate,.about,.bookgrid');
+  const els = $$('.head,.stats,.marquee,.moment,.card,.room figure,.facade,.revs,.ttwrap,.rate,.about,.bookgrid');
   const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:.05});
   els.forEach(el=>{ el.classList.add('reveal'); const sib=[...el.parentElement.children].indexOf(el); el.style.transitionDelay=(Math.min(sib,4)*70)+'ms'; io.observe(el); });
 })();

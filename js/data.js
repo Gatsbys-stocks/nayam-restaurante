@@ -166,5 +166,13 @@ const GPHOTOS = [
   ['google-7',['Tagliatelle en plato blanco','Tagliatelle in a white bowl'],'l']
 ];
 
-w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS, VIDEOS: VIDEOS, GPHOTOS: GPHOTOS };
+/* Cifras de la franja bajo la portada (de Google Maps y TikTok a fecha de la última revisión; actualízalas cuando cambien) */
+const STATS = [
+  {v:4.8,dec:1,l:['valoración en Google','rating on Google']},
+  {v:99,dec:0,l:['reseñas en Google','Google reviews']},
+  {v:18600,dec:0,compact:true,l:['seguidores en TikTok','TikTok followers']},
+  {v:620900,dec:0,compact:true,l:['me gusta en TikTok','TikTok likes']}
+];
+
+w.NAYAM_DATA = { WA: WA, MENU: MENU, STRIP: STRIP, REVS: REVS, HOURS: HOURS, VIDEOS: VIDEOS, GPHOTOS: GPHOTOS, STATS: STATS };
 })(window);
