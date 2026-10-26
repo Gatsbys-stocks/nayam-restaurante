@@ -4,14 +4,14 @@
 const { HOURS } = window.NAYAM_DATA;
 const T = {
   es:{web:'‹ Ver la web completa',sub:'Restaurant · Poblenou, Barcelona',ask:'¿Qué te apetece?',
-    bTag:'Desde las 08:00',bTitle:'Desayunos',bText:'Marroquí, francés, español, tortillas y tostadas. Servidos todo el día.',
-    fTag:'Comida y cena',fTitle:'Carta',fText:'Entrantes, burgers, pasta, carnes, pizzas y postres.',
+    bTag:'Desde 08:00',bTitle:'Desayunos',bText:'Marroquí, francés, español y tostadas',
+    fTag:'Comida y cena',fTitle:'Carta',fText:'Burgers, pasta, carnes, pizzas y postres',
     book:'Reservar por WhatsApp',bookS:'Dinos día, hora y personas',map:'Cómo llegar',ig:'Instagram',tt:'TikTok',rev:'Déjanos tu reseña',full:'Ver la web completa',
     open:'Abierto ahora · hasta las ',closed:'Cerrado ahora · abre a las ',
     wa:'¡Hola Nayam! Quiero reservar una mesa.\nNombre: \nDía y hora: \nNº de personas: '},
   en:{web:'‹ See the full website',sub:'Restaurant · Poblenou, Barcelona',ask:'What are you in the mood for?',
-    bTag:'From 08:00',bTitle:'Breakfast',bText:'Moroccan, French, Spanish, omelettes and toasts. Served all day.',
-    fTag:'Lunch & dinner',fTitle:'Menu',fText:'Starters, burgers, pasta, meats, pizzas and desserts.',
+    bTag:'From 08:00',bTitle:'Breakfast',bText:'Moroccan, French, Spanish and toasts',
+    fTag:'Lunch & dinner',fTitle:'Menu',fText:'Burgers, pasta, meats, pizzas and desserts',
     book:'Book on WhatsApp',bookS:'Tell us the day, time and people',map:'Directions',ig:'Instagram',tt:'TikTok',rev:'Leave us a review',full:'See the full website',
     open:'Open now · until ',closed:'Closed now · opens at ',
     wa:'Hello Nayam! I would like to book a table.\nName: \nDay and time: \nNumber of people: '}
