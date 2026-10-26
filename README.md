@@ -9,12 +9,16 @@ No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaS
 ```
 nayam-restaurante/
 ├── index.html              Página única (SEO, datos estructurados y seguridad en el <head>)
+├── mesa/
+│   └── index.html          Página del QR de las mesas: elegir Desayunos o Carta (nayam.daylli9s.site/mesa/)
 ├── css/
 │   ├── styles.css          Diseño y colores (modo claro y oscuro)
+│   ├── mesa.css            Diseño de la página del QR
 │   └── fonts.css           Fuentes propias (sin llamadas a Google)
 ├── js/
 │   ├── data.js             CARTA, precios, horario y reseñas  ← lo que más se edita
 │   ├── i18n.js             Textos en español e inglés
+│   ├── mesa.js             Idioma, «abierto ahora» y WhatsApp de la página del QR
 │   └── main.js             Lógica: idioma, carta, galería, reservas, "abierto ahora"
 ├── assets/
 │   ├── img/                Fotos en WebP (NOMBRE-s.webp miniatura, NOMBRE-l.webp grande)
@@ -74,6 +78,16 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 3. Añádelo a `VIDEOS` en `js/data.js`.
 
 El clip grande se reproduce solo y sin sonido al llegar a esa sección, pasa al siguiente al terminar y se pausa al salir de pantalla. Con «reducir movimiento» activado no arranca solo.
+
+## QR de las mesas
+
+El QR de las mesas apunta a **https://nayam.daylli9s.site/mesa/**, una página pensada para el móvil con dos opciones grandes (**Desayunos** y **Carta** de comida y cena) y debajo los enlaces de siempre: reservar por WhatsApp, cómo llegar, Instagram, TikTok, reseña de Google y la web completa.
+
+- Cada opción lleva directo a su carta: `/#desayunos` abre la pestaña de Desayunos y `/#carta` la de Comida y cena.
+- Si cambias precios o platos en `js/data.js`, el QR no cambia: sigue llevando a la misma página.
+- Usa el mismo horario que la web (`HOURS` en `js/data.js`) para el aviso «Abierto ahora».
+- GoatCounter cuenta esta página aparte (`/mesa/`), así que en tus estadísticas se ve cuánta gente escanea el QR frente a la que entra por la web.
+- Para añadir o quitar un enlace, edita la lista `<ul class="links">` de `mesa/index.html` y, si hace falta, los textos en `js/mesa.js`.
 
 ## Cifras bajo la portada
 

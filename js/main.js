@@ -206,6 +206,16 @@ addEventListener('resize',setHH);
 if(document.fonts&&document.fonts.ready) document.fonts.ready.then(setHH);
 applyLang();
 
+/* Enlaces directos: #carta abre la carta de comida y #desayunos abre los desayunos (los usa el QR de las mesas) */
+function openFromHash(first){
+  const h = location.hash;
+  if(h!=='#desayunos' && h!=='#breakfast' && h!=='#carta') return;
+  tab = (h==='#carta') ? 'food' : 'breakfast'; cat = null; renderMenu();
+  const el = $('#carta'); if(el) el.scrollIntoView({behavior:first?'instant':'smooth',block:'start'});
+}
+window.addEventListener('hashchange',()=>openFromHash(false));
+openFromHash(true);
+
 /* Animaciones: presentación de fotos en la portada y aparición suave al hacer scroll */
 (function(){
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
