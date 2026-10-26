@@ -3,16 +3,16 @@
 'use strict';
 const { HOURS } = window.NAYAM_DATA;
 const T = {
-  es:{web:'‹ Ver la web completa',sub:'Restaurant · Poblenou, Barcelona',ask:'¿Qué te apetece?',
+  es:{sub:'Restaurant · Poblenou, Barcelona',ask:'¿Qué te apetece?',
     bTag:'Desde 08:00',bTitle:'Desayunos',bText:'Marroquí, francés, español y tostadas',
     fTag:'Comida y cena',fTitle:'Carta',fText:'Burgers, pasta, carnes, pizzas y postres',
-    book:'Reservar por WhatsApp',bookS:'Dinos día, hora y personas',map:'Cómo llegar',ig:'Instagram',tt:'TikTok',rev:'Déjanos tu reseña',full:'Ver la web completa',
+    book:'Reservar por WhatsApp',viewWeb:'Ver la web',map:'Cómo llegar',ig:'Instagram',tt:'TikTok',rev:'Déjanos tu reseña',
     open:'Abierto ahora · hasta las ',closed:'Cerrado ahora · abre a las ',
     wa:'¡Hola Nayam! Quiero reservar una mesa.\nNombre: \nDía y hora: \nNº de personas: '},
-  en:{web:'‹ See the full website',sub:'Restaurant · Poblenou, Barcelona',ask:'What are you in the mood for?',
+  en:{sub:'Restaurant · Poblenou, Barcelona',ask:'What are you in the mood for?',
     bTag:'From 08:00',bTitle:'Breakfast',bText:'Moroccan, French, Spanish and toasts',
     fTag:'Lunch & dinner',fTitle:'Menu',fText:'Burgers, pasta, meats, pizzas and desserts',
-    book:'Book on WhatsApp',bookS:'Tell us the day, time and people',map:'Directions',ig:'Instagram',tt:'TikTok',rev:'Leave us a review',full:'See the full website',
+    book:'Book on WhatsApp',viewWeb:'See the website',map:'Directions',ig:'Instagram',tt:'TikTok',rev:'Leave us a review',
     open:'Open now · until ',closed:'Closed now · opens at ',
     wa:'Hello Nayam! I would like to book a table.\nName: \nDay and time: \nNumber of people: '}
 };
@@ -43,4 +43,12 @@ function apply(){
 }
 $('#lang').addEventListener('click',()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} apply(); });
 apply();
+
+/* NAYAM aparece letra a letra (si el visitante no pide reducir movimiento) */
+(function(){
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const h = $('.brand h1'); if(!h) return;
+  const txt = h.textContent; h.setAttribute('aria-label',txt); h.textContent = '';
+  [...txt].forEach((c,i)=>{ const s=document.createElement('span'); s.className='ch'; s.setAttribute('aria-hidden','true'); s.textContent=c; s.style.setProperty('--i',i); h.appendChild(s); });
+})();
 })();

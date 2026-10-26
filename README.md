@@ -9,16 +9,18 @@ No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaS
 ```
 nayam-restaurante/
 ├── index.html              Página única (SEO, datos estructurados y seguridad en el <head>)
+├── qrmesa/
+│   └── index.html          Página del QR de las mesas: elegir Desayunos o Carta (nayam.daylli9s.site/qrmesa/)
 ├── mesa/
-│   └── index.html          Página del QR de las mesas: elegir Desayunos o Carta (nayam.daylli9s.site/mesa/)
+│   └── index.html          Redirige a /qrmesa/ (por si se hubiera impreso la dirección anterior)
 ├── css/
 │   ├── styles.css          Diseño y colores (modo claro y oscuro)
-│   ├── mesa.css            Diseño de la página del QR
+│   ├── qrmesa.css          Diseño y animaciones de la página del QR
 │   └── fonts.css           Fuentes propias (sin llamadas a Google)
 ├── js/
 │   ├── data.js             CARTA, precios, horario y reseñas  ← lo que más se edita
 │   ├── i18n.js             Textos en español e inglés
-│   ├── mesa.js             Idioma, «abierto ahora» y WhatsApp de la página del QR
+│   ├── qrmesa.js           Idioma, «abierto ahora» y WhatsApp de la página del QR
 │   └── main.js             Lógica: idioma, carta, galería, reservas, "abierto ahora"
 ├── assets/
 │   ├── img/                Fotos en WebP (NOMBRE-s.webp miniatura, NOMBRE-l.webp grande)
@@ -81,13 +83,13 @@ El clip grande se reproduce solo y sin sonido al llegar a esa sección, pasa al 
 
 ## QR de las mesas
 
-El QR de las mesas apunta a **https://nayam.daylli9s.site/mesa/**, una página pensada para el móvil con dos opciones grandes (**Desayunos** y **Carta** de comida y cena) y debajo los enlaces de siempre: reservar por WhatsApp, cómo llegar, Instagram, TikTok, reseña de Google y la web completa.
+El QR de las mesas apunta a **https://nayam.daylli9s.site/qrmesa/**, una página pensada para el móvil con dos opciones grandes (**Desayunos** y **Carta** de comida y cena) y debajo los enlaces de siempre: reservar por WhatsApp y «Ver la web» (botones destacados), y cómo llegar, Instagram, TikTok y reseña de Google. Tiene animaciones suaves (neón que se enciende, fotos con zoom lento, brillos) que se desactivan con «reducir movimiento».
 
 - Cada opción lleva directo a su carta: `/#desayunos` abre la pestaña de Desayunos y `/#carta` la de Comida y cena.
 - Si cambias precios o platos en `js/data.js`, el QR no cambia: sigue llevando a la misma página.
 - Usa el mismo horario que la web (`HOURS` en `js/data.js`) para el aviso «Abierto ahora».
-- GoatCounter cuenta esta página aparte (`/mesa/`), así que en tus estadísticas se ve cuánta gente escanea el QR frente a la que entra por la web.
-- Para añadir o quitar un enlace, edita la lista `<ul class="links">` de `mesa/index.html` y, si hace falta, los textos en `js/mesa.js`.
+- GoatCounter cuenta esta página aparte (`/qrmesa/`), así que en tus estadísticas se ve cuánta gente escanea el QR frente a la que entra por la web.
+- Para añadir o quitar un enlace, edita la lista `<ul class="links">` de `qrmesa/index.html` y, si hace falta, los textos en `js/qrmesa.js`.
 
 ## Cifras bajo la portada
 
