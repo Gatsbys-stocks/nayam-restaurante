@@ -91,8 +91,17 @@ const REVS = [
 const HOURS = [['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','00:00'],['08:00','01:00'],['08:00','01:00'],['08:00','00:00']];
 
 /* Vídeos del TikTok del restaurante (@nayambarcelona). id = número al final de la URL del vídeo en TikTok.
+   Si el vídeo es propio (no de TikTok) añade own:true y t:['texto ES','texto EN']; no lleva enlace ni visitas.
    El clip va en assets/video/ID.mp4 (vertical 9:16, H.264) y la portada en assets/img/tiktok-ID.webp. views es orientativo. */
 const VIDEOS = [
+ {
+  "id": "desayuno-nayam",
+  "own": true,
+  "t": [
+   "Así son nuestros desayunos",
+   "Our breakfasts"
+  ]
+ },
  {
   "id": "7696513662965550358",
   "title": "¿De quién es el restaurante?…",

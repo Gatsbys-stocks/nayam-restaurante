@@ -95,19 +95,21 @@ let ttIndex = 0, ttUserPaused = false;
 const calmMotion = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 const ttNf = () => new Intl.NumberFormat(lang==='es'?'es-ES':'en-GB',{notation:'compact',maximumFractionDigits:1});
 const ttVid = () => $('#ttvideo');
+const vTitle = v => v.t ? v.t[lang==='es'?0:1] : v.title;
 function renderVideos(){
   const nf = ttNf();
-  $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" role="listitem" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(v.title)}" ${i===ttIndex?'aria-current="true"':''}>
+  $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" role="listitem" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(vTitle(v))}" ${i===ttIndex?'aria-current="true"':''}>
     <img src="assets/img/tiktok-${v.id}.webp" alt="" loading="lazy" width="270" height="480">
     <span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
-    <span class="ttviews">${nf.format(v.views)}</span></button>`).join('');
+    <span class="ttviews">${v.own?t('ttNew'):nf.format(v.views)}</span></button>`).join('');
   renderCaption(); renderSound();
   $('#ttpp').setAttribute('aria-label', ttVid().paused ? t('ttPlay') : t('ttPause'));
 }
 function renderCaption(){
   const v = VIDEOS[ttIndex];
-  $('#ttcap').innerHTML = `${esc(v.title)}<small>${ttNf().format(v.views)} ${t('ttViews')}</small>`;
-  $('#ttlink').href = 'https://www.tiktok.com/@nayambarcelona/video/'+encodeURIComponent(v.id);
+  $('#ttcap').innerHTML = `${esc(vTitle(v))}` + (v.own ? '' : `<small>${ttNf().format(v.views)} ${t('ttViews')}</small>`);
+  const lk = $('#ttlink'); lk.hidden = !!v.own;
+  if(!v.own) lk.href = 'https://www.tiktok.com/@nayambarcelona/video/'+encodeURIComponent(v.id);
 }
 function renderSound(){
   const m = ttVid().muted;

@@ -44,6 +44,17 @@ function apply(){
 $('#lang').addEventListener('click',()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} apply(); });
 apply();
 
+/* El vídeo de la tarjeta Desayunos se reproduce en bucle y sin sonido (no con «reducir movimiento» ni «ahorro de datos») */
+(function(){
+  const v = $('#cvid'); if(!v) return;
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saver = navigator.connection && navigator.connection.saveData;
+  if(calm || saver) return;
+  v.addEventListener('playing',()=>v.classList.add('on'));
+  const go = ()=>v.play().catch(()=>{});
+  if(document.readyState==='complete') go(); else window.addEventListener('load',go);
+})();
+
 /* NAYAM aparece letra a letra (si el visitante no pide reducir movimiento) */
 (function(){
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
