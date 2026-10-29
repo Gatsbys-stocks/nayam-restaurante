@@ -76,7 +76,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 Hay vídeos grabados por el restaurante usados como fondo y en tarjetas (no son los de TikTok, que siguen en su sección):
 - **Portada de la web:** `hero-reel.mp4` (ordenador) y `hero-reel-m.mp4` (móvil), un montaje de 26 segundos con fachada, neón, sala, desayuno, brunch, crepes y batidos. Va sin sonido y en bucle, con botón de pausa. El pase de fotos queda como respaldo.
-- **Tarjetas «Para cada momento del día»:** bucles `moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`. La tarjeta «Comida y cena» sigue con foto hasta que haya un vídeo de comida o cena.
+- **Tarjetas «Para cada momento del día»:** bucles `moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`. «Comida y cena» (y la tarjeta Carta del QR) usa de momento un bucle del interior del local (`carta-loop.mp4`) hasta que haya un vídeo de platos de comida o cena.
 - **Contacto:** `local-loop.mp4` (fachada, neón y sala) en lugar de la foto.
 - **Página del QR:** el montaje de la portada de fondo y `desayuno-nayam-loop.mp4` en la tarjeta Desayunos.
 

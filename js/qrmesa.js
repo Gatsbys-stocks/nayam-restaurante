@@ -57,12 +57,12 @@ apply();
 
 /* El vídeo de la tarjeta Desayunos se reproduce en bucle y sin sonido (no con «reducir movimiento» ni «ahorro de datos») */
 (function(){
-  const v = $('#cvid'); if(!v) return;
+  const vs = $$('.cvid'); if(!vs.length) return;
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saver = navigator.connection && navigator.connection.saveData;
   if(calm || saver) return;
-  v.addEventListener('playing',()=>v.classList.add('on'));
-  const go = ()=>v.play().catch(()=>{});
+  vs.forEach(v=>v.addEventListener('playing',()=>v.classList.add('on')));
+  const go = ()=>vs.forEach(v=>v.play().catch(()=>{}));
   if(document.readyState==='complete') go(); else window.addEventListener('load',go);
 })();
 
