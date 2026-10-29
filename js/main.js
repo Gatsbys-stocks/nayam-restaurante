@@ -53,7 +53,10 @@ $('#lb').addEventListener('click',e=>{ if(e.target.id==='lb') closeLb(); });
 document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(!$('#lb').hidden) closeLb(); else closeNav(); } });
 
 $('#tabs').addEventListener('click',e=>{ const b=e.target.closest('[data-tab]'); if(b){ tab=b.dataset.tab; cat=null; renderMenu(); } });
-$('#chips').addEventListener('click',e=>{ const b=e.target.closest('[data-cat]'); if(b){ cat=b.dataset.cat; renderMenu(); } });
+$('#chips').addEventListener('click',e=>{ const b=e.target.closest('[data-cat]'); if(b){ cat=b.dataset.cat; renderMenu();
+  const bar=$('#chips'), hh=($('#top')?$('#top').offsetHeight:60);
+  if(bar.getBoundingClientRect().top<=hh+6) bar.scrollIntoView({block:'start',behavior:'auto'});
+  const on=$('.mcat[aria-selected="true"]'); if(on&&on.scrollIntoView) on.scrollIntoView({inline:'center',block:'nearest',behavior:'auto'}); } });
 $$('.moment[data-tab]').forEach(a=>a.addEventListener('click',()=>{ tab=a.dataset.tab; cat=null; renderMenu(); }));
 
 /* WhatsApp booking */
@@ -202,6 +205,7 @@ function applyLang(){
   $$('#mnavLinks a').forEach(a=>a.addEventListener('click',closeNav));
   const waHref = 'https://wa.me/'+WA+'?text='+encodeURIComponent(t('waMsg')[0]);
   const hb=$('#heroBook'); hb.href=waHref; hb.innerHTML=svg('wa')+t('bookLong');
+  const mb=$('#mbBook'); mb.href=waHref; mb.innerHTML=svg('wa')+t('book');
   $('#wa').innerHTML = svg('wa')+t('bookLong');
   $('#lbx').setAttribute('aria-label',t('close'));
   const stripItem = (s,i,dup)=>`<button type="button" class="sitem${dup?' dup':''}" data-strip="${i}" ${dup?'aria-hidden="true" tabindex="-1"':`aria-label="${t('seeMenu2')}: ${esc(s[1][L_()])}"`}><img src="${img(s[0])}" alt="" loading="lazy" width="560" height="420"><span>${esc(s[1][L_()])}</span></button>`;
@@ -283,5 +287,14 @@ openFromHash(true);
     new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ if(v.src) start(); } else if(!v.paused){ v.pause(); } }),{threshold:.1}).observe(hero);
   }
   icon();
+})();
+
+/* Barra fija inferior (solo móvil): aparece al pasar la portada y se esconde en reservas y contacto, donde ya están esos botones */
+(function(){
+  const bar=$('#mbar'); if(!bar||!('IntersectionObserver' in window)) return;
+  const vis={hero:true,res:false,con:false};
+  const upd=()=>{ bar.hidden = vis.hero || vis.res || vis.con; document.body.classList.toggle('has-mbar',!bar.hidden); };
+  const watch=(sel,key)=>{ const el=$(sel); if(!el) return; new IntersectionObserver(es=>{ vis[key]=es.some(x=>x.isIntersecting); upd(); },{threshold:key==='hero'?.15:.1}).observe(el); };
+  watch('.hero','hero'); watch('#reservas','res'); watch('#contacto','con');
 })();
 })();

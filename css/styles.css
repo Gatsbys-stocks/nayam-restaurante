@@ -346,3 +346,46 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
 .hero.vid::after{background:linear-gradient(180deg,rgba(11,16,12,.62) 0%,rgba(11,16,12,.56) 50%,rgba(11,16,12,.8) 88%,var(--bg) 100%)}
 .herop{position:absolute;right:max(16px,env(safe-area-inset-right,0px));bottom:84px;z-index:3;width:44px;height:44px;border-radius:50%;border:0;background:rgba(0,0,0,.55);color:#fff;display:grid;place-items:center;cursor:pointer;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
 @media(min-width:900px){.herop{right:calc(max(16px,(100% - 1160px)/2 + 16px));bottom:96px}}
+
+/* ======== mejoras para móvil ======== */
+.mbar{display:none}
+@media(max-width:759px){
+  /* tarjetas «Para cada momento del día»: se deslizan de lado y se ve la siguiente asomando */
+  .moments{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;
+    margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:.2rem max(16px,env(safe-area-inset-left,0px)) .9rem;scrollbar-width:none}
+  .moments::-webkit-scrollbar{display:none}
+  .moment{flex:none;width:78vw;max-width:340px;min-height:360px;scroll-snap-align:center}
+  /* reseñas: igual, en horizontal */
+  .revs{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:.8rem;
+    margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding:.2rem max(16px,env(safe-area-inset-left,0px)) .9rem;scrollbar-width:none}
+  .revs::-webkit-scrollbar{display:none}
+  .rev{flex:none;width:84vw;max-width:360px;scroll-snap-align:center}
+  .rev p{font-size:1.12rem}
+  /* categorías de la carta fijas bajo la cabecera mientras se baja */
+  .mcats{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--hh,60px));z-index:20;background:var(--bg);margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px));margin-bottom:1.4rem;box-shadow:0 8px 14px -12px rgba(0,0,0,.6)}
+  .mcat{padding:.95rem .1rem}
+  .cat,#menu{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hh,60px) + 54px)}
+  /* platos más compactos: foto menos alta */
+  .dish .ph{aspect-ratio:16/9}
+  /* reservas: se quita lo repetido (pasos e imagen) */
+  .bookgrid .card:nth-child(2){display:none}
+  .hero .wrap{padding-block:56px 84px}
+  /* contacto: vídeo más bajo */
+  .facade{aspect-ratio:1/1}
+  .stats{margin-top:-46px}
+  section{padding-block:clamp(40px,10vw,64px) 0}
+  /* barra fija inferior */
+  .mbar{position:fixed;left:0;right:0;bottom:0;z-index:35;display:grid;grid-template-columns:1fr 1.25fr;gap:.55rem;
+    padding:.6rem max(14px,env(safe-area-inset-right,0px)) calc(.6rem + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));
+    background:color-mix(in srgb,var(--bg) 88%,transparent);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid var(--line)}
+  .mbar a{display:flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;border-radius:99px;font-weight:700;font-size:.95rem;text-decoration:none;line-height:1}
+  .mb-menu{border:1.5px solid var(--line);color:var(--fg);background:var(--surface)}
+  .mb-book{background:var(--accent);color:var(--accent-ink)}
+  .mbar[hidden]{display:none}
+  body.has-mbar footer{padding-bottom:calc(5.2rem + env(safe-area-inset-bottom,0px))}
+  .toast{bottom:calc(90px + env(safe-area-inset-bottom,0px))}
+}
+@media(prefers-reduced-motion:no-preference){
+  @media(max-width:759px){.mbar{animation:mbup .35s ease both}}
+}
+@keyframes mbup{from{transform:translateY(100%)}to{transform:none}}

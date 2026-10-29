@@ -104,6 +104,10 @@ El QR de las mesas apunta a **https://nayam.daylli9s.site/qrmesa/**, una página
 - GoatCounter cuenta esta página aparte (`/qrmesa/`), así que en tus estadísticas se ve cuánta gente escanea el QR frente a la que entra por la web.
 - Para añadir o quitar un enlace, edita la lista `<ul class="links">` de `qrmesa/index.html` y, si hace falta, los textos en `js/qrmesa.js`.
 
+## Móvil
+
+En pantallas estrechas la web cambia así: «Para cada momento del día» y las reseñas se deslizan de lado, las categorías de la carta quedan fijas bajo la cabecera, aparece una barra inferior con «Ver la carta» y «Reservar» (se esconde en la portada, en reservas y en contacto) y se quitan los pasos repetidos de reservas. Todo está en la parte final de `css/styles.css` (bloque «mejoras para móvil») y en `js/main.js` (barra inferior).
+
 ## Cifras bajo la portada
 
 Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.
