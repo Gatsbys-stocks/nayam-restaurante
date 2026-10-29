@@ -72,6 +72,12 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 **Fotos nuevas:** convierte la foto a WebP y guarda dos copias en `assets/img/`: `plato-s.webp` (unos 560 px de ancho) y `plato-l.webp` (unos 1200 px). Luego usa `plato` como primer valor del plato en `js/data.js`. Un plato sin foto se muestra como lista de precios.
 
+## Vídeos propios del restaurante
+
+Además de los clips del TikTok, hay vídeos grabados por el restaurante (`desayuno-nayam`, `brunch-nayam`, `crepes-nayam`, `batidos-nayam`). Van marcados con `own:true` en `js/data.js` y no enlazan a TikTok. Dos bucles cortos de 8 segundos (`moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`) sirven de fondo a las tarjetas «Desayunos y brunch» y «Café y buen ambiente» de «Para cada momento del día», y `desayuno-nayam-loop.mp4` a la tarjeta Desayunos de la página del QR. La tarjeta «Comida y cena» sigue con foto hasta que haya un vídeo de comida o cena.
+
+Importante: si un vídeo viene de un editor gratuito con marca de agua, hay que volver a exportarlo sin ella. Los actuales se han recortado por abajo para ocultar la de clideo.com.
+
 ## Añadir o cambiar un vídeo
 
 1. Recorta el vídeo a 10–15 segundos, vertical 9:16, y comprímelo en H.264 (unos 1,5 MB):

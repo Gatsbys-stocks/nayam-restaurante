@@ -237,4 +237,18 @@ openFromHash(true);
   const io = new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-in'); io.unobserve(e.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:.05});
   els.forEach(el=>{ el.classList.add('reveal'); const sib=[...el.parentElement.children].indexOf(el); el.style.transitionDelay=(Math.min(sib,4)*70)+'ms'; io.observe(el); });
 })();
+
+/* Tarjetas con vídeo (Desayunos y brunch, Café y buen ambiente): se mueven al verse; quietas con «reducir movimiento» o «ahorro de datos» */
+(function(){
+  const vs = $$('.mvid'); if(!vs.length) return;
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saver = navigator.connection && navigator.connection.saveData;
+  if(calm || saver || !('IntersectionObserver' in window)) return;
+  vs.forEach(v=>v.addEventListener('playing',()=>v.classList.add('on')));
+  const io = new IntersectionObserver(es=>es.forEach(en=>{
+    const v = en.target;
+    if(en.isIntersecting){ v.play().catch(()=>{}); } else if(!v.paused){ v.pause(); }
+  }),{threshold:.3});
+  vs.forEach(v=>io.observe(v));
+})();
 })();

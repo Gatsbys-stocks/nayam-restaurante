@@ -103,6 +103,30 @@ const VIDEOS = [
   ]
  },
  {
+  "id": "brunch-nayam",
+  "own": true,
+  "t": [
+   "Brunch: tostadas, tortillas y fruta",
+   "Brunch: toasts, omelettes and fruit"
+  ]
+ },
+ {
+  "id": "crepes-nayam",
+  "own": true,
+  "t": [
+   "Crepes, gofres y postres",
+   "Crepes, waffles and desserts"
+  ]
+ },
+ {
+  "id": "batidos-nayam",
+  "own": true,
+  "t": [
+   "Batidos y zumos naturales",
+   "Smoothies and fresh juices"
+  ]
+ },
+ {
   "id": "7696513662965550358",
   "title": "¿De quién es el restaurante?…",
   "views": 781300
