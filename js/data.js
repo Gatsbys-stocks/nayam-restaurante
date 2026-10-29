@@ -75,11 +75,21 @@ breakfast:[
   L(['Café solo','Espresso'],1.8),L(['Cortado','Cortado'],2),L(['Café con leche','White coffee'],2.3),L(['Americano','Americano'],2.3),L(['Capuchino','Cappuccino'],2.6)]}
 ]};
 
+/* Tira «Del desayuno a la cena»: [foto, [nombre ES, EN], pestaña de la carta, categoría, posición del plato]
+   Al tocar una foto la web lleva a ese plato en la carta (ids de categoría y posición de MENU). */
 const STRIP = [
-  ['ensalada-de-salmon-nayam',['Ensalada de Salmón','Salmon Salad']],['hamburguesa-nayam-barcelona',['La Clásica','The Classic']],
-  ['pasta-penne-arrabbiata-nayam',['Penne Arrabbiata','Penne Arrabbiata']],['gambas-dynamite-nayam',['Gambas Dynamite','Gambas Dynamite']],
-  ['pizza-atun-cebolla-nayam',['Pizza Atún y Cebolla','Tuna & Onion Pizza']],['chicken-dynamite-nayam',['Chicken Dynamite','Chicken Dynamite']],
-  ['solomillo-de-ternera-nayam',['Solomillo de Ternera','Beef Sirloin']],['plato-gourmet-nayam',['Plato gourmet','Gourmet dish']]];
+  ['desayuno-marroqui',['Desayuno marroquí','Moroccan breakfast'],'breakfast','sets',1],
+  ['desayuno-especial',['Desayuno especial para dos','Special breakfast for two'],'breakfast','sets',5],
+  ['ensalada-de-salmon-nayam',['Ensalada de Salmón','Salmon Salad'],'food','cold',2],
+  ['hamburguesa-nayam-barcelona',['La Clásica','The Classic'],'food','burgers',0],
+  ['pasta-penne-arrabbiata-nayam',['Penne Arrabbiata','Penne Arrabbiata'],'food','pasta',0],
+  ['gambas-dynamite-nayam',['Gambas Dynamite','Gambas Dynamite'],'food','hot',1],
+  ['pizza-atun-cebolla-nayam',['Pizza Atún y Cebolla','Tuna & Onion Pizza'],'food','pizzas',2],
+  ['chicken-dynamite-nayam',['Chicken Dynamite','Chicken Dynamite'],'food','hot',2],
+  ['solomillo-de-ternera-nayam',['Solomillo de Ternera','Beef Sirloin'],'food','mains',3],
+  ['costillas-bbq-black-angus-nayam',['Costillas Black Angus','Black Angus Ribs'],'food','mains',4],
+  ['crepes-nayam',['Crepes','Crepes'],'food','sweet',0],
+  ['cheesecake-ferrero',['Cheesecake Roche','Roche Cheesecake'],'food','desserts',1]];
 
 const REVS = [
   ['Isamar Lucena','Lugar muy agradable, excelente servicio y comida deliciosa!'],

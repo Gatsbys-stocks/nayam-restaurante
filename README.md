@@ -61,6 +61,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 |---|---|
 | Precios, platos, descripciones | `js/data.js` (objeto `MENU`, con texto en español e inglés) |
 | Horario | `js/data.js` (`HOURS`, lunes primero) **y** el bloque JSON-LD de `index.html` |
+| Tira «Del desayuno a la cena» | `js/data.js` (`STRIP`): foto, nombre, pestaña, categoría y posición del plato al que lleva al tocarla |
 | Reseñas | `js/data.js` (`REVS`) |
 | Fotos que rotan en la portada | `index.html`, bloque `<div class="slides">` (usa fotos de `assets/img/`) |
 | Fotos de clientes de Google | `js/data.js` (`GPHOTOS`) y `assets/img/google-N-s.webp` / `-l.webp` |
@@ -76,7 +77,7 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 Hay vídeos grabados por el restaurante usados como fondo y en tarjetas (no son los de TikTok, que siguen en su sección):
 - **Portada de la web:** `hero-reel.mp4` (ordenador) y `hero-reel-m.mp4` (móvil), un montaje de 26 segundos con fachada, neón, sala, desayuno, brunch, crepes y batidos. Va sin sonido y en bucle, con botón de pausa. El pase de fotos queda como respaldo.
-- **Tarjetas «Para cada momento del día»:** bucles `moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`. «Comida y cena» (y la tarjeta Carta del QR) usa de momento un bucle del interior del local (`carta-loop.mp4`) hasta que haya un vídeo de platos de comida o cena.
+- **Tarjetas «Para cada momento del día»:** bucles `moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`. «Comida y cena» (y la tarjeta Carta del QR) usa de momento un bucle del brunch (`carta-loop.mp4`) hasta que haya un vídeo de platos de comida o cena. En la página del QR los vídeos van a cámara lenta (el de fondo a 0,5x y los de las tarjetas a 0,7x; se cambia en `js/qrmesa.js`).
 - **Contacto:** `local-loop.mp4` (fachada, neón y sala) en lugar de la foto.
 - **Página del QR:** el montaje de la portada de fondo y `desayuno-nayam-loop.mp4` en la tarjeta Desayunos.
 

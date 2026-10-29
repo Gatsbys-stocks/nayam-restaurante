@@ -50,6 +50,7 @@ apply();
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saver = navigator.connection && navigator.connection.saveData;
   if(calm || saver){ v.remove(); return; }
+  v.defaultPlaybackRate = 0.5; v.playbackRate = 0.5;   // el vídeo de fondo va a media velocidad
   v.addEventListener('playing',()=>v.classList.add('on'));
   const go = ()=>{ v.src = window.matchMedia('(max-width: 760px)').matches ? '../assets/video/hero-reel-m.mp4' : '../assets/video/hero-reel.mp4'; v.play().catch(()=>{}); };
   if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',()=>setTimeout(go,150));
@@ -61,7 +62,7 @@ apply();
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const saver = navigator.connection && navigator.connection.saveData;
   if(calm || saver) return;
-  vs.forEach(v=>v.addEventListener('playing',()=>v.classList.add('on')));
+  vs.forEach(v=>{ v.defaultPlaybackRate = 0.7; v.playbackRate = 0.7; v.addEventListener('playing',()=>v.classList.add('on')); });
   const go = ()=>vs.forEach(v=>v.play().catch(()=>{}));
   if(document.readyState==='complete') go(); else window.addEventListener('load',go);
 })();

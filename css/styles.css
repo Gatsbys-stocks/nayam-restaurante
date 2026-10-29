@@ -101,11 +101,26 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.7;
 .moment p{margin:0;font-size:.95rem;opacity:.92}
 
 /* dish strip */
-.strip{display:flex;gap:.8rem;overflow-x:auto;scroll-snap-type:x mandatory;padding-block:.2rem 1rem;scrollbar-width:thin;
-  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));padding-inline:max(16px,env(safe-area-inset-left,0px))}
-.strip button{flex:none;width:min(72vw,300px);aspect-ratio:4/5;border:0;padding:0;border-radius:20px;overflow:hidden;scroll-snap-align:start;position:relative;background:var(--surface2)}
-.strip img{width:100%;height:100%;object-fit:cover}
-.strip span{position:absolute;inset:auto 0 0 0;padding:2rem .9rem .8rem;color:var(--hero-fg);font-weight:700;text-align:left;font-size:.95rem;background:linear-gradient(transparent,rgba(11,16,12,.75))}
+.strip{overflow:hidden;padding-block:.2rem 1rem;
+  margin-inline:calc(-1 * max(16px,env(safe-area-inset-left,0px)));
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent);mask-image:linear-gradient(90deg,transparent,#000 5%,#000 95%,transparent)}
+.strip-track{display:flex;gap:.8rem;width:max-content}
+.sitem{flex:none;width:min(62vw,280px);aspect-ratio:4/5;border:0;padding:0;border-radius:20px;overflow:hidden;position:relative;background:var(--surface2);cursor:pointer;font:inherit}
+.sitem img{width:100%;height:100%;object-fit:cover;display:block}
+.sitem span{position:absolute;inset:auto 0 0 0;padding:2rem .9rem .8rem;color:var(--hero-fg);font-weight:700;text-align:left;font-size:.95rem;background:linear-gradient(transparent,rgba(11,16,12,.78))}
+.sitem span::after{content:" ›";color:var(--accent)}
+@media(prefers-reduced-motion:no-preference){
+  /* las fotos se desplazan despacio; se paran al pasar el ratón o al enfocar */
+  .strip-track{animation:stripmove 110s linear infinite}
+  .strip:hover .strip-track,.strip:focus-within .strip-track{animation-play-state:paused}
+  .sitem img{transition:transform .6s ease}
+  .sitem:hover img{transform:scale(1.06)}
+}
+@keyframes stripmove{to{transform:translateX(calc(-50% - .4rem))}}
+@media(prefers-reduced-motion:reduce){.strip{overflow-x:auto}.sitem.dup{display:none}}
+/* plato resaltado al llegar desde la tira */
+.dish.hl{animation:dishhl 3.2s ease both}
+@keyframes dishhl{0%,70%{box-shadow:0 0 0 2px var(--accent),0 0 28px rgba(214,242,60,.45);border-radius:16px}100%{box-shadow:0 0 0 0 transparent}}
 
 /* carta (estilo lista de restaurante: nombre ······ precio) */
 .carta{padding-top:0}

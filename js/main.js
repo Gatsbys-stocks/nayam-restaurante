@@ -47,7 +47,6 @@ function openLb(x){
 let lastFocus=null;
 function closeLb(){ $('#lb').hidden=true; document.body.classList.remove('lock'); if(lastFocus&&lastFocus.focus) lastFocus.focus(); }
 $('#menu').addEventListener('click',e=>{ const b=e.target.closest('[data-open]'); if(b) openLb(findItem(b.dataset.open)); });
-$('#strip').addEventListener('click',e=>{ const b=e.target.closest('[data-strip]'); if(!b) return; const s=STRIP[+b.dataset.strip]; const x={i:s[0],n:s[1],d:['',''],p:null}; openLbSimple(s); });
 function openLbSimple(s){ const l=L_(); $('#lbi').src=img(s[0],'l'); $('#lbi').alt=s[1][l]; $('#lbn').textContent=s[1][l]; $('#lbd').textContent=''; $('#lbp').textContent=''; $('#lb').hidden=false; document.body.classList.add('lock'); lastFocus=document.activeElement; $('#lbx').focus(); }
 $('#lbx').onclick = closeLb;
 $('#lb').addEventListener('click',e=>{ if(e.target.id==='lb') closeLb(); });
@@ -181,6 +180,17 @@ function renderGP(){
 }
 $('#track').addEventListener('click',e=>{ const b=e.target.closest('[data-g]'); if(!b) return; const g=GPHOTOS[+b.dataset.g]; openLbSimple([g[0],g[1]]); });
 
+/* Tira «Del desayuno a la cena»: al tocar una foto se abre la carta en ese plato y se resalta */
+function goToDish(tabName,catId,idx){
+  tab = tabName; cat = catId; renderMenu();
+  const btn = document.querySelector('[data-open="'+catId+':'+idx+'"]');
+  const el = btn && btn.closest('.dish'); if(!el){ const c=$('#carta'); if(c) c.scrollIntoView(); return; }
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  el.scrollIntoView({block:'center',behavior:calm?'auto':'smooth'});
+  el.classList.add('hl'); setTimeout(()=>el.classList.remove('hl'),3200);
+}
+$('#strip').addEventListener('click',e=>{ const b=e.target.closest('[data-strip]'); if(!b) return; const s=STRIP[+b.dataset.strip]; goToDish(s[2],s[3],s[4]); });
+
 function applyLang(){
   document.documentElement.lang = lang;
   $$('[data-i18n]').forEach(el=>el.textContent=t(el.dataset.i18n));
@@ -194,7 +204,8 @@ function applyLang(){
   const hb=$('#heroBook'); hb.href=waHref; hb.innerHTML=svg('wa')+t('bookLong');
   $('#wa').innerHTML = svg('wa')+t('bookLong');
   $('#lbx').setAttribute('aria-label',t('close'));
-  $('#strip').innerHTML = STRIP.map((s,i)=>`<button type="button" data-strip="${i}" aria-label="${esc(s[1][L_()])}"><img src="${img(s[0])}" alt="" loading="lazy" width="560" height="420"><span>${esc(s[1][L_()])}</span></button>`).join('');
+  const stripItem = (s,i,dup)=>`<button type="button" class="sitem${dup?' dup':''}" data-strip="${i}" ${dup?'aria-hidden="true" tabindex="-1"':`aria-label="${t('seeMenu2')}: ${esc(s[1][L_()])}"`}><img src="${img(s[0])}" alt="" loading="lazy" width="560" height="420"><span>${esc(s[1][L_()])}</span></button>`;
+  $('#strip').innerHTML = `<div class="strip-track">${STRIP.map((s,i)=>stripItem(s,i,false)).join('')}${STRIP.map((s,i)=>stripItem(s,i,true)).join('')}</div>`;
   $('#revs').innerHTML = REVS.map(r=>`<figure class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>“${esc(r[1].trim())}”</p><figcaption class="who"><span class="av" aria-hidden="true">${esc(r[0][0])}</span><span><b>${esc(r[0])}</b>${t('revSrc')}</span></figcaption></figure>`).join('');
   $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb'],['https://x.com/nayambarcelona','X','x']]
     .map(s=>`<a href="${s[0]}" target="_blank" rel="noopener" aria-label="${s[1]}">${svg(s[2])}</a>`).join('');
