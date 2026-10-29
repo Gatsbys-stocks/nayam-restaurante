@@ -251,4 +251,26 @@ openFromHash(true);
   }),{threshold:.3});
   vs.forEach(v=>io.observe(v));
 })();
+
+/* Portada: el vídeo del local sustituye al pase de fotos (se queda el pase de fotos con «reducir movimiento» o «ahorro de datos») */
+(function(){
+  const v = $('#heroVideo'), hero = $('.hero'), btn = $('#heroPause'); if(!v||!hero) return;
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saver = navigator.connection && navigator.connection.saveData;
+  if(calm || saver){ btn.hidden = true; v.remove(); return; }
+  let userPaused = false;
+  const icon = ()=>{ $('#heroPauseIcon').setAttribute('d', v.paused ? 'M8 5v14l11-7z' : 'M8 5v14M16 5v14'); btn.setAttribute('aria-pressed', String(v.paused)); btn.setAttribute('aria-label', v.paused ? t('heroPlay') : t('heroPause')); };
+  v.addEventListener('playing',()=>{ v.classList.add('on'); hero.classList.add('vid'); icon(); });
+  v.addEventListener('pause',icon);
+  btn.addEventListener('click',()=>{ if(v.paused){ userPaused=false; v.play().catch(()=>{}); } else { userPaused=true; v.pause(); } });
+  const start = ()=>{
+    if(!v.src){ v.src = window.matchMedia('(max-width: 760px)').matches ? 'assets/video/hero-reel-m.mp4' : 'assets/video/hero-reel.mp4'; }
+    if(!userPaused) v.play().catch(()=>{});
+  };
+  if(document.readyState==='complete') setTimeout(start,200); else window.addEventListener('load',()=>setTimeout(start,200));
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ if(v.src) start(); } else if(!v.paused){ v.pause(); } }),{threshold:.1}).observe(hero);
+  }
+  icon();
+})();
 })();

@@ -44,6 +44,17 @@ function apply(){
 $('#lang').addEventListener('click',()=>{ lang = lang==='es'?'en':'es'; try{localStorage.setItem('nayam.lang',lang)}catch(e){} apply(); });
 apply();
 
+/* Fondo: el vídeo del local (si el visitante no pide «reducir movimiento» ni «ahorro de datos») */
+(function(){
+  const v = $('#bgvid'); if(!v) return;
+  const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const saver = navigator.connection && navigator.connection.saveData;
+  if(calm || saver){ v.remove(); return; }
+  v.addEventListener('playing',()=>v.classList.add('on'));
+  const go = ()=>{ v.src = window.matchMedia('(max-width: 760px)').matches ? '../assets/video/hero-reel-m.mp4' : '../assets/video/hero-reel.mp4'; v.play().catch(()=>{}); };
+  if(document.readyState==='complete') setTimeout(go,150); else window.addEventListener('load',()=>setTimeout(go,150));
+})();
+
 /* El vídeo de la tarjeta Desayunos se reproduce en bucle y sin sonido (no con «reducir movimiento» ni «ahorro de datos») */
 (function(){
   const v = $('#cvid'); if(!v) return;

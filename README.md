@@ -74,9 +74,15 @@ En **Settings → Pages → Custom domain** escribe el dominio y activa **Enforc
 
 ## Vídeos propios del restaurante
 
-Además de los clips del TikTok, hay vídeos grabados por el restaurante (`desayuno-nayam`, `brunch-nayam`, `crepes-nayam`, `batidos-nayam`). Van marcados con `own:true` en `js/data.js` y no enlazan a TikTok. Dos bucles cortos de 8 segundos (`moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`) sirven de fondo a las tarjetas «Desayunos y brunch» y «Café y buen ambiente» de «Para cada momento del día», y `desayuno-nayam-loop.mp4` a la tarjeta Desayunos de la página del QR. La tarjeta «Comida y cena» sigue con foto hasta que haya un vídeo de comida o cena.
+Hay vídeos grabados por el restaurante usados como fondo y en tarjetas (no son los de TikTok, que siguen en su sección):
+- **Portada de la web:** `hero-reel.mp4` (ordenador) y `hero-reel-m.mp4` (móvil), un montaje de 26 segundos con fachada, neón, sala, desayuno, brunch, crepes y batidos. Va sin sonido y en bucle, con botón de pausa. El pase de fotos queda como respaldo.
+- **Tarjetas «Para cada momento del día»:** bucles `moment-brunch-loop.mp4` y `moment-cafe-loop.mp4`. La tarjeta «Comida y cena» sigue con foto hasta que haya un vídeo de comida o cena.
+- **Contacto:** `local-loop.mp4` (fachada, neón y sala) en lugar de la foto.
+- **Página del QR:** el montaje de la portada de fondo y `desayuno-nayam-loop.mp4` en la tarjeta Desayunos.
 
-Importante: si un vídeo viene de un editor gratuito con marca de agua, hay que volver a exportarlo sin ella. Los actuales se han recortado por abajo para ocultar la de clideo.com.
+Todos se quedan quietos (con la foto de respaldo) si el visitante tiene activado «reducir movimiento» o «ahorro de datos».
+
+Importante: los vídeos originales venían de un editor gratuito con marca de agua (clideo.com). Se han recortado por abajo para ocultarla; si el restaurante pasa las versiones sin marca, hay que volver a generar el montaje y los bucles.
 
 ## Añadir o cambiar un vídeo
 
