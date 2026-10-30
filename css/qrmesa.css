@@ -135,3 +135,6 @@ h2{margin:0 0 .6rem;font:600 clamp(1.6rem,7vw,2rem)/1.05 var(--f-display);text-a
 
 .choice video{display:block;opacity:0;transition:opacity .8s ease}
 .choice video.on{opacity:1}
+
+.legal-links{margin:.1rem 0 0!important;font-size:.72rem}
+.legal-links a{color:var(--muted);text-underline-offset:3px}

@@ -397,3 +397,6 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
 @media(min-width:900px){.ttlist{min-height:0}}
 .stats ul{min-height:9.5rem}
 @media(min-width:760px){.stats ul{min-height:6rem}}
+/* enlaces legales del pie */
+.legal-links a{color:var(--muted);text-underline-offset:3px}
+.legal-links a:hover{color:var(--fg)}
