@@ -123,7 +123,7 @@ Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de l
 
 Hay dos páginas: `aviso-legal/` y `privacidad/` (política de privacidad y cookies), enlazadas desde el pie de la web y de la página del QR. Los datos del titular (nombre, NIF y domicilio) salen de la factura del restaurante y están escritos en ambas páginas. Si cambian (por ejemplo, si el negocio pasa a una sociedad), hay que actualizarlos en las dos y cambiar la fecha de «Última actualización».
 
-La web no usa cookies, no tiene formularios y mide visitas con GoatCounter sin cookies, por eso no lleva banner de cookies. Si se añade algo que use cookies (mapas, vídeos o píxeles de terceros), hay que actualizar la política y pedir consentimiento. Los textos son una base redactada a partir de lo que hace la web; conviene que el restaurante o su gestoría los revise.
+La web no usa cookies, no tiene formularios y mide visitas con GoatCounter sin cookies, por eso no necesita pedir consentimiento. Aun así muestra un aviso informativo (`js/cookies.js` y `css/cookies.css`) que explica eso y enlaza a la política; al pulsar «Entendido» se recuerda en el navegador (`nayam.cookies`). Si se añade algo que use cookies (mapas, vídeos o píxeles de terceros), hay que convertirlo en un banner de consentimiento (Aceptar/Rechazar) que bloquee esas herramientas hasta aceptar, y actualizar la política.
 
 ## Seguridad
 
