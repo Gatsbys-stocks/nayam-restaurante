@@ -24,14 +24,18 @@
 <link rel="preload" as="image" href="assets/img/local-banqueta-m.webp" imagesrcset="assets/img/local-banqueta-s.webp 700w, assets/img/local-banqueta-m.webp 1000w, assets/img/local-banqueta-l.webp 1800w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="css/fonts.css">
 <link rel="stylesheet" href="css/styles.css">
-<link rel="stylesheet" href="css/cookies.css">
 
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "Nayam Restaurante",
+  "url": "https://nayam.daylli9s.site/",
   "description": "Brunch, desayunos, comidas y cenas con cocina casera todo el día en Poblenou, Barcelona.",
+  "image": [
+    "https://nayam.daylli9s.site/assets/img/local-banqueta-l.webp",
+    "https://nayam.daylli9s.site/assets/img/local-neon-l.webp"
+  ],
   "telephone": "+34673327809",
   "email": "nayambarcelona@gmail.com",
   "address": {
@@ -41,15 +45,50 @@
     "postalCode": "08005",
     "addressCountry": "ES"
   },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 41.3986198,
+    "longitude": 2.2036853
+  },
   "openingHoursSpecification": [
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Sunday","Monday","Tuesday","Wednesday","Thursday"], "opens": "08:00", "closes": "00:00" },
-    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday","Saturday"], "opens": "08:00", "closes": "01:00" }
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday"
+      ],
+      "opens": "08:00",
+      "closes": "00:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "08:00",
+      "closes": "01:00"
+    }
   ],
+  "hasMenu": "https://nayam.daylli9s.site/#carta",
+  "servesCuisine": [
+    "Brunch",
+    "Desayunos",
+    "Casera",
+    "Pasta",
+    "Pizza",
+    "Carnes"
+  ],
+  "priceRange": "€€",
+  "acceptsReservations": true,
+  "areaServed": "Poblenou, Barcelona",
   "sameAs": [
     "https://www.instagram.com/nayambarcelona",
     "https://www.tiktok.com/@nayambarcelona",
-    "https://www.facebook.com/nayambarcelona",
-    "https://x.com/nayambarcelona"
+    "https://www.facebook.com/nayambarcelona"
   ]
 }
 </script>
@@ -101,7 +140,7 @@
       <div class="ttwrap">
         <div class="ttmain">
           <div class="ttframe" id="ttframe">
-            <video id="ttvideo" playsinline muted preload="metadata" poster="assets/img/tiktok-7696513662965550358.webp"></video>
+            <video id="ttvideo" playsinline muted preload="none"></video>
             <button type="button" class="ttpp" id="ttpp"><span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span></button>
             <button type="button" class="ttsound" id="ttsound" aria-pressed="false"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path id="ttwave" d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11"/></svg></button>
             <div class="ttbar" aria-hidden="true"><i id="ttprog"></i></div>
@@ -124,9 +163,9 @@
     <div class="wrap">
       <div class="head"><span class="eyebrow" data-i18n="momEyebrow">Más que un desayuno</span><h2 data-i18n="momTitle">Para cada momento del día</h2></div>
       <div class="moments">
-        <a class="moment" href="#desayunos" data-tab="breakfast"><img src="assets/img/moment-brunch.webp" alt="Desayuno especial para dos en Nayam" data-alt="altBreak"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/moment-brunch-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m1t">Desayunos y brunch</h3><p data-i18n="m1p">Servidos todo el día. Del desayuno marroquí al francés.</p></div></a>
-        <a class="moment" href="#carta" data-tab="food"><img src="assets/img/carta-loop-poster.webp" alt="Plato de carne gourmet en Nayam" data-alt="altDish"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/carta-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m2t">Comida y cena</h3><p data-i18n="m2p">Ensaladas, burgers, pastas, carnes y pizzas al momento.</p></div></a>
-        <a class="moment" href="#local"><img src="assets/img/moment-cafe.webp" alt="Interior del restaurante Nayam" data-alt="altCafe"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/moment-cafe-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m3t">Café y buen ambiente</h3><p data-i18n="m3p">El rincón perfecto para compartir en Poblenou.</p></div></a>
+        <a class="moment" href="#desayunos" data-tab="breakfast"><img loading="lazy" decoding="async" src="assets/img/moment-brunch.webp" alt="Desayuno especial para dos en Nayam" data-alt="altBreak"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/moment-brunch-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m1t">Desayunos y brunch</h3><p data-i18n="m1p">Servidos todo el día. Del desayuno marroquí al francés.</p></div></a>
+        <a class="moment" href="#carta" data-tab="food"><img loading="lazy" decoding="async" src="assets/img/carta-loop-poster.webp" alt="Plato de carne gourmet en Nayam" data-alt="altDish"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/carta-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m2t">Comida y cena</h3><p data-i18n="m2p">Ensaladas, burgers, pastas, carnes y pizzas al momento.</p></div></a>
+        <a class="moment" href="#local"><img loading="lazy" decoding="async" src="assets/img/moment-cafe.webp" alt="Interior del restaurante Nayam" data-alt="altCafe"><video class="mvid" muted loop playsinline preload="none" aria-hidden="true" tabindex="-1"><source src="assets/video/moment-cafe-loop.mp4" type="video/mp4"></video><div><h3 data-i18n="m3t">Café y buen ambiente</h3><p data-i18n="m3p">El rincón perfecto para compartir en Poblenou.</p></div></a>
       </div>
     </div>
   </section>
@@ -140,6 +179,7 @@
   </section>
 
   <section id="carta" class="carta">
+    <span id="desayunos" class="anchor"></span>
     <div class="menubanner">
       <img src="assets/img/local-banqueta-l.webp" alt="">
       <div class="wrap"><span class="eyebrow" data-i18n="menuEyebrow">La carta</span><h2 data-i18n="menuTitle">Nuestra carta</h2><p data-i18n="menuLead">Elige una categoría y toca la foto para verla más grande. Precios con IVA incluido.</p></div>

@@ -115,6 +115,13 @@ En pantallas estrechas la web cambia así: «Para cada momento del día» y las 
 - `robots.txt` y `sitemap.xml` apuntan a `https://nayam.daylli9s.site/`. Al publicar el aviso legal y la política de privacidad, añádelos al `sitemap.xml`.
 - Para medir: Lighthouse (Chrome → F12 → Lighthouse) o https://pagespeed.web.dev/ con la dirección de la web.
 
+## Revisión final antes de publicar
+
+- `404.html`: página de «no encontrada» con la marca (GitHub Pages la usa sola).
+- Datos estructurados para Google (`<script type="application/ld+json">` en `index.html`): nombre, dirección, coordenadas, horario, carta y redes. Si cambia el horario, hay que cambiarlo también ahí, en `js/data.js` y en los textos.
+- Redes sociales: se quitó el enlace a X porque la cuenta `@nayambarcelona` no existe (da 404). Instagram, Facebook y TikTok se enlazan con el usuario `nayambarcelona`; conviene abrirlos a mano de vez en cuando.
+- En GitHub → Settings → Pages hay que tener marcado **Enforce HTTPS**.
+
 ## Cifras bajo la portada
 
 Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.

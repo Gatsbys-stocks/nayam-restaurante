@@ -400,3 +400,5 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
 /* enlaces legales del pie */
 .legal-links a{color:var(--muted);text-underline-offset:3px}
 .legal-links a:hover{color:var(--fg)}
+
+.anchor{display:block;height:0;overflow:hidden}

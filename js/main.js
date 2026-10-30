@@ -141,7 +141,10 @@ function nextVideo(){ loadVideo((ttIndex+1)%VIDEOS.length, true); }
   el.addEventListener('click',toggle);
   $('#ttsound').addEventListener('click',()=>{ el.muted = !el.muted; });
   $('#tt').addEventListener('click',e=>{ const b=e.target.closest('.ttthumb'); if(b) loadVideo(+b.dataset.i, true); });
-  loadVideo(0,false);
+  if('IntersectionObserver' in window){
+    const pre = new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){ pre.disconnect(); loadVideo(ttIndex,false); } },{rootMargin:'900px 0px'});
+    pre.observe(frame);
+  } else loadVideo(0,false);
   // arranca al ver el vídeo y se pausa al salir de pantalla
   if('IntersectionObserver' in window){
     new IntersectionObserver(es=>{
@@ -211,7 +214,7 @@ function applyLang(){
   const stripItem = (s,i,dup)=>`<button type="button" class="sitem${dup?' dup':''}" data-strip="${i}" ${dup?'aria-hidden="true" tabindex="-1"':`aria-label="${t('seeMenu2')}: ${esc(s[1][L_()])}"`}><img src="${img(s[0])}" alt="" loading="lazy" width="560" height="420"><span>${esc(s[1][L_()])}</span></button>`;
   $('#strip').innerHTML = `<div class="strip-track">${STRIP.map((s,i)=>stripItem(s,i,false)).join('')}${STRIP.map((s,i)=>stripItem(s,i,true)).join('')}</div>`;
   $('#revs').innerHTML = REVS.map(r=>`<figure class="rev"><div class="stars" aria-hidden="true">★★★★★</div><p>“${esc(r[1].trim())}”</p><figcaption class="who"><span class="av" aria-hidden="true">${esc(r[0][0])}</span><span><b>${esc(r[0])}</b>${t('revSrc')}</span></figcaption></figure>`).join('');
-  $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb'],['https://x.com/nayambarcelona','X','x']]
+  $('#soc').innerHTML = [['https://www.instagram.com/nayambarcelona','Instagram','ig'],['https://www.tiktok.com/@nayambarcelona','TikTok','tt'],['https://www.facebook.com/nayambarcelona','Facebook','fb']]
     .map(s=>`<a href="${s[0]}" target="_blank" rel="noopener" aria-label="${s[1]}">${svg(s[2])}</a>`).join('');
   renderVideos(); renderGP(); renderStats(); renderMenu(); renderHours(); fillForm(); setHH();
 }

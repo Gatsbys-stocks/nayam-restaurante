@@ -41,3 +41,8 @@ code{font-family:ui-monospace,Menlo,monospace;font-size:.88em;background:var(--s
   .tbl td{border:0;padding:.35rem .8rem}
   .tbl td::before{content:attr(data-l);display:block;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
 }
+
+.nf{min-height:60vh}
+.nfb{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.4rem}
+.nfbtn{display:inline-flex;align-items:center;min-height:46px;padding:.8rem 1.4rem;border-radius:99px;background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none}
+.nfbtn.ghost{background:transparent;color:var(--fg);border:1.5px solid var(--line)}
