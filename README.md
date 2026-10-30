@@ -112,6 +112,21 @@ En pantallas estrechas la web cambia así: «Para cada momento del día» y las 
 
 Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.
 
+## Textos legales (RGPD y LSSI)
+
+Hay dos páginas: `aviso-legal/` y `privacidad/` (política de privacidad y cookies), enlazadas desde el pie de la web y de la página del QR. Antes de publicarlas hay que sustituir estos marcadores por los datos reales del titular del restaurante:
+
+| Marcador | Qué poner |
+|---|---|
+| `[[RAZON_SOCIAL]]` | Nombre completo o razón social del titular |
+| `[[NIF]]` | NIF o CIF |
+| `[[DOMICILIO_FISCAL]]` | Domicilio del titular (puede ser distinto del local) |
+| `[[FECHA]]` | Fecha de la última actualización (por ejemplo, 30 de octubre de 2026) |
+
+Comprobar que no queda ninguno: `grep -rn "\[\[" aviso-legal privacidad` (no debe salir nada).
+
+La web no usa cookies, no tiene formularios y mide visitas con GoatCounter sin cookies, por eso no lleva banner de cookies. Si se añade algo que use cookies (mapas, vídeos o píxeles de terceros), hay que actualizar la política y pedir consentimiento. Los textos son una base redactada a partir de lo que hace la web; conviene que el restaurante o su gestoría los revise.
+
 ## Seguridad
 
 Esta web no tiene formularios que envíen datos ni servidor, por lo que la superficie de ataque es mínima. Aun así:

@@ -3,13 +3,13 @@
 'use strict';
 const { HOURS } = window.NAYAM_DATA;
 const T = {
-  es:{sub:'Restaurant · Poblenou, Barcelona',ask:'¿Qué te apetece?',
+  es:{lAviso:'Aviso legal',lPriv:'Privacidad y cookies',sub:'Restaurant · Poblenou, Barcelona',ask:'¿Qué te apetece?',
     bTag:'Desde 08:00',bTitle:'Desayunos',bText:'Marroquí, francés, español y tostadas',
     fTag:'Comida y cena',fTitle:'Carta',fText:'Burgers, pasta, carnes, pizzas y postres',
     book:'Reservar por WhatsApp',viewWeb:'Ver la web',map:'Cómo llegar',ig:'Instagram',tt:'TikTok',rev:'Déjanos tu reseña',
     open:'Abierto ahora · hasta las ',closed:'Cerrado ahora · abre a las ',
     wa:'¡Hola Nayam! Quiero reservar una mesa.\nNombre: \nDía y hora: \nNº de personas: '},
-  en:{sub:'Restaurant · Poblenou, Barcelona',ask:'What are you in the mood for?',
+  en:{lAviso:'Legal notice',lPriv:'Privacy & cookies',sub:'Restaurant · Poblenou, Barcelona',ask:'What are you in the mood for?',
     bTag:'From 08:00',bTitle:'Breakfast',bText:'Moroccan, French, Spanish and toasts',
     fTag:'Lunch & dinner',fTitle:'Menu',fText:'Burgers, pasta, meats, pizzas and desserts',
     book:'Book on WhatsApp',viewWeb:'See the website',map:'Directions',ig:'Instagram',tt:'TikTok',rev:'Leave us a review',

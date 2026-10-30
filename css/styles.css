@@ -389,3 +389,7 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
   @media(max-width:759px){.mbar{animation:mbup .35s ease both}}
 }
 @keyframes mbup{from{transform:translateY(100%)}to{transform:none}}
+
+/* enlaces legales del pie */
+.legal-links a{color:var(--muted);text-underline-offset:3px}
+.legal-links a:hover{color:var(--fg)}
