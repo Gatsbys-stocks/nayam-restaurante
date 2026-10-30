@@ -108,6 +108,13 @@ El QR de las mesas apunta a **https://nayam.daylli9s.site/qrmesa/**, una página
 
 En pantallas estrechas la web cambia así: «Para cada momento del día» y las reseñas se deslizan de lado, las categorías de la carta quedan fijas bajo la cabecera, aparece una barra inferior con «Ver la carta» y «Reservar» (se esconde en la portada, en reservas y en contacto) y se quitan los pasos repetidos de reservas. Todo está en la parte final de `css/styles.css` (bloque «mejoras para móvil») y en `js/main.js` (barra inferior).
 
+## Rendimiento y comprobaciones
+
+- El texto en español de `index.html` está escrito ya en el HTML (lo genera `node tools/prerender.js` a partir de `js/i18n.js`), de modo que la página tiene contenido antes de cargar JavaScript y no «salta» al cargar. Si cambias textos en `js/i18n.js`, ejecuta ese comando y sube el resultado.
+- La foto principal de la portada tiene tres tamaños (`local-banqueta-s/m/l.webp`) y se precarga; las demás fotos del pase se descargan cuando la página ya ha cargado.
+- `robots.txt` y `sitemap.xml` apuntan a `https://nayam.daylli9s.site/`. Al publicar el aviso legal y la política de privacidad, añádelos al `sitemap.xml`.
+- Para medir: Lighthouse (Chrome → F12 → Lighthouse) o https://pagespeed.web.dev/ con la dirección de la web.
+
 ## Cifras bajo la portada
 
 Se editan en `js/data.js` (`STATS`). Vienen de Google Maps y TikTok a fecha de la última revisión, así que actualízalas de vez en cuando.

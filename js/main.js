@@ -34,7 +34,7 @@ function renderMenu(){
   let body = '';
   if(c.items) body += `<div class="mlist">${c.items.map((x,i)=>`<article class="dish">
       <button type="button" class="ph" data-open="${c.id}:${i}" aria-label="${esc(x.n[l])}: ${t('zoom')}"><img src="${img(x.i)}" alt="" loading="lazy" width="560" height="420"></button>
-      <div class="body"><div class="row1"><h4>${esc(x.n[l])}</h4><span class="dots"></span><span class="price">${price(x.p)}</span></div>${x.d[l]?`<p>${esc(x.d[l])}</p>`:''}</div></article>`).join('')}</div>`;
+      <div class="body"><div class="row1"><h3>${esc(x.n[l])}</h3><span class="dots"></span><span class="price">${price(x.p)}</span></div>${x.d[l]?`<p>${esc(x.d[l])}</p>`:''}</div></article>`).join('')}</div>`;
   if(c.list) body += plist(c.list);
   if(c.extra) body += `<h3 class="sub-title">${c.extra.t[l]}</h3>`+plist(c.extra.list);
   $('#menu').innerHTML = `<div role="tabpanel" aria-label="${esc(c.t[l])}">${body}</div>` + (tab==='breakfast'?`<p class="note">${t('breakNote')}</p>`:'');
@@ -100,7 +100,7 @@ const ttVid = () => $('#ttvideo');
 const vTitle = v => v.t ? v.t[lang==='es'?0:1] : v.title;
 function renderVideos(){
   const nf = ttNf();
-  $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" role="listitem" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(vTitle(v))}" ${i===ttIndex?'aria-current="true"':''}>
+  $('#tt').innerHTML = VIDEOS.map((v,i)=>`<button type="button" class="ttthumb" data-i="${i}" aria-label="${t('ttPlay')}: ${esc(vTitle(v))}" ${i===ttIndex?'aria-current="true"':''}>
     <img src="assets/img/tiktok-${v.id}.webp" alt="" loading="lazy" width="270" height="480">
     <span class="ttico" aria-hidden="true"><svg class="i" viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor" stroke="none"/></svg></span>
     <span class="ttviews">${v.own?t('ttNew'):nf.format(v.views)}</span></button>`).join('');
@@ -238,6 +238,9 @@ openFromHash(true);
   const calm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(calm) return;
   const imgs = $$('#slides img');
+  // las fotos 2-4 del pase se descargan después de cargar la página, para no competir con la principal
+  const lateLoad = ()=>setTimeout(()=>imgs.forEach(i=>{ if(!i.src && i.dataset.src) i.src = i.dataset.src; }),1200);
+  if(document.readyState==='complete') lateLoad(); else window.addEventListener('load',lateLoad);
   if(imgs.length>1){
     let k = 0;
     setInterval(()=>{

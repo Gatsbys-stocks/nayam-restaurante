@@ -146,7 +146,7 @@ svg.i{width:1.25em;height:1.25em;fill:none;stroke:currentColor;stroke-width:1.7;
 .dish .ph img{width:100%;height:100%;object-fit:cover}
 .dish .body{min-width:0}
 .dish .row1{display:flex;gap:.7rem;align-items:baseline}
-.dish h4{margin:0;font:600 1.45rem/1.15 var(--f-display)}
+.dish h3{margin:0;font:600 1.45rem/1.15 var(--f-display)}
 .dots{flex:1;border-bottom:1.5px dotted color-mix(in srgb,var(--fg) 38%,transparent);transform:translateY(-.3rem);min-width:14px}
 .price{font:700 1.3rem/1 var(--f-display);font-variant-numeric:tabular-nums;white-space:nowrap;color:var(--accent-text)}
 .dish p{margin:.4rem 0 0;color:var(--muted);font-size:.95rem;line-height:1.5}
@@ -389,3 +389,11 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
   @media(max-width:759px){.mbar{animation:mbup .35s ease both}}
 }
 @keyframes mbup{from{transform:translateY(100%)}to{transform:none}}
+
+/* reservar el espacio de lo que se pinta con JavaScript (evita saltos al cargar) */
+#status[hidden]{display:inline-flex!important;visibility:hidden;min-width:9rem;min-height:2rem}
+.ttlist{min-height:calc(92px*16/9 + .8rem)}
+.ttcap{min-height:3.2rem}
+@media(min-width:900px){.ttlist{min-height:0}}
+.stats ul{min-height:9.5rem}
+@media(min-width:760px){.stats ul{min-height:6rem}}

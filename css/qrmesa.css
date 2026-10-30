@@ -42,10 +42,10 @@ h2{margin:0 0 .6rem;font:600 clamp(1.6rem,7vw,2rem)/1.05 var(--f-display);text-a
 .choice{position:relative;isolation:isolate;display:flex;align-items:flex-end;min-height:clamp(150px,26vh,230px);border-radius:20px;overflow:hidden;text-decoration:none;color:#fff;border:1px solid var(--line);box-shadow:0 12px 28px rgba(0,0,0,.45)}
 .choice img,.choice video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
 .choice::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(0,0,0,.05) 20%,rgba(6,10,7,.9) 100%)}
-.chip{position:absolute;top:.65rem;left:.65rem;font:700 .58rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:.4rem .55rem;border-radius:99px}
+.chip{position:absolute;top:.65rem;left:.65rem;font:700 .66rem/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;background:var(--accent);color:var(--accent-ink);padding:.4rem .55rem;border-radius:99px}
 .ctx{display:flex;flex-direction:column;gap:.15rem;padding:.8rem .75rem .8rem .8rem;min-width:0}
 .ctx b{font:600 1.55rem/1 var(--f-display)}
-.ctx small{font-size:.74rem;opacity:.92;line-height:1.3}
+.ctx small{font-size:.8rem;opacity:.92;line-height:1.3}
 .go{position:absolute;top:.5rem;right:.55rem;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center}
 .go .i{width:18px;height:18px}
 .choice:active .go{transform:scale(.94)}
@@ -56,7 +56,7 @@ h2{margin:0 0 .6rem;font:600 clamp(1.6rem,7vw,2rem)/1.05 var(--f-display);text-a
 .lnk .lic{width:2rem;height:2rem;border-radius:50%;background:rgba(214,242,60,.14);color:var(--neon);display:grid;place-items:center;flex:none}
 .lnk .ltx{display:flex;flex-direction:column;min-width:0;margin-right:auto;line-height:1.2}
 .lnk b{font-weight:700;font-size:.92rem}
-.lnk small{color:var(--muted);font-size:.74rem}
+.lnk small{color:var(--muted);font-size:.8rem}
 .lnk svg.go{display:none}
 .lnk.main{min-height:58px;background:var(--accent);color:var(--accent-ink);border-color:transparent}
 .lnk.main .lic{background:var(--accent-ink);color:var(--accent)}
@@ -64,7 +64,7 @@ h2{margin:0 0 .6rem;font:600 clamp(1.6rem,7vw,2rem)/1.05 var(--f-display);text-a
 .lnk.main{height:100%}
 .lnk.main small{color:rgba(20,27,8,.78)}
 
-.foot{text-align:center;color:var(--muted);font-size:.74rem;line-height:1.35}
+.foot{text-align:center;color:var(--muted);font-size:.78rem;line-height:1.35}
 .foot p{margin:0}
 .credit{margin-top:.15rem!important}
 .credit b{color:var(--fg)}
