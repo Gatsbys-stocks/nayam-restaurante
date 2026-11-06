@@ -402,3 +402,7 @@ footer .legal .credit b{color:var(--fg);font-weight:700}
 .legal-links a:hover{color:var(--fg)}
 
 .anchor{display:block;height:0;overflow:hidden}
+
+/* la marca «Nayam» forma parte del título principal (H1) sin cambiar el diseño */
+.hero h1 .neon{display:block;margin:0 0 .75rem}
+.hero h1 .ht{display:block}
