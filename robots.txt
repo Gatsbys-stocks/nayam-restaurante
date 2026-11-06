@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://nayam.daylli9s.site/sitemap.xml
+Sitemap: https://nayam.site/sitemap.xml

@@ -10,7 +10,7 @@ No usa frameworks, ni servidor, ni base de datos. Son archivos HTML, CSS y JavaS
 nayam-restaurante/
 ├── index.html              Página única (SEO, datos estructurados y seguridad en el <head>)
 ├── qrmesa/
-│   └── index.html          Página del QR de las mesas: elegir Desayunos o Carta (nayam.daylli9s.site/qrmesa/)
+│   └── index.html          Página del QR de las mesas: elegir Desayunos o Carta (nayam.site/qrmesa/)
 ├── mesa/
 │   └── index.html          Redirige a /qrmesa/ (por si se hubiera impreso la dirección anterior)
 ├── css/
@@ -26,7 +26,7 @@ nayam-restaurante/
 │   ├── img/                Fotos en WebP (NOMBRE-s.webp miniatura, NOMBRE-l.webp grande)
 │   ├── video/              Clips verticales en MP4 (ID.mp4), sacados del TikTok del restaurante
 │   ├── fonts/              Cormorant Garamond, DM Sans y Yellowtail (licencia OFL)
-│   └── favicon.svg
+│   └── icons/              Iconos de la marca (48, 96, 144, 192 y 512 px); también `favicon.ico` y `apple-touch-icon.png` en la raíz
 ├── _headers                Cabeceras de seguridad para Netlify o Cloudflare Pages
 ├── robots.txt
 ├── .nojekyll
@@ -96,7 +96,7 @@ El clip grande se reproduce solo y sin sonido al llegar a esa sección, pasa al 
 
 ## QR de las mesas
 
-El QR de las mesas apunta a **https://nayam.daylli9s.site/qrmesa/**, una página pensada para el móvil con dos opciones grandes (**Desayunos** y **Carta** de comida y cena) y debajo los enlaces de siempre: reservar por WhatsApp y «Ver la web» (botones destacados), y cómo llegar, Instagram, TikTok y reseña de Google. Tiene animaciones suaves (neón que se enciende, fotos con zoom lento, brillos) que se desactivan con «reducir movimiento».
+El QR de las mesas apunta a **https://nayam.site/qrmesa/**, una página pensada para el móvil con dos opciones grandes (**Desayunos** y **Carta** de comida y cena) y debajo los enlaces de siempre: reservar por WhatsApp y «Ver la web» (botones destacados), y cómo llegar, Instagram, TikTok y reseña de Google. Tiene animaciones suaves (neón que se enciende, fotos con zoom lento, brillos) que se desactivan con «reducir movimiento».
 
 - Cada opción lleva directo a su carta: `/#desayunos` abre la pestaña de Desayunos y `/#carta` la de Comida y cena.
 - Si cambias precios o platos en `js/data.js`, el QR no cambia: sigue llevando a la misma página.
@@ -112,7 +112,7 @@ En pantallas estrechas la web cambia así: «Para cada momento del día» y las 
 
 - El texto en español de `index.html` está escrito ya en el HTML (lo genera `node tools/prerender.js` a partir de `js/i18n.js`), de modo que la página tiene contenido antes de cargar JavaScript y no «salta» al cargar. Si cambias textos en `js/i18n.js`, ejecuta ese comando y sube el resultado.
 - La foto principal de la portada tiene tres tamaños (`local-banqueta-s/m/l.webp`) y se precarga; las demás fotos del pase se descargan cuando la página ya ha cargado.
-- `robots.txt` y `sitemap.xml` apuntan a `https://nayam.daylli9s.site/`. Al publicar el aviso legal y la política de privacidad, añádelos al `sitemap.xml`.
+- `robots.txt` y `sitemap.xml` apuntan a `https://nayam.site/`. Al publicar el aviso legal y la política de privacidad, añádelos al `sitemap.xml`.
 - Para medir: Lighthouse (Chrome → F12 → Lighthouse) o https://pagespeed.web.dev/ con la dirección de la web.
 
 ## Revisión final antes de publicar
@@ -121,6 +121,10 @@ En pantallas estrechas la web cambia así: «Para cada momento del día» y las 
 - Datos estructurados para Google (`<script type="application/ld+json">` en `index.html`): nombre, dirección, coordenadas, horario, carta y redes. Si cambia el horario, hay que cambiarlo también ahí, en `js/data.js` y en los textos.
 - Redes sociales: se quitó el enlace a X porque la cuenta `@nayambarcelona` no existe (da 404). Instagram, Facebook y TikTok se enlazan con el usuario `nayambarcelona`; conviene abrirlos a mano de vez en cuando.
 - En GitHub → Settings → Pages hay que tener marcado **Enforce HTTPS**.
+
+## Dirección y buscadores
+
+La web vive en **https://nayam.site/** (archivo `CNAME`). Esa dirección está también en `index.html` (canonical, Open Graph y datos para Google), `sitemap.xml` y `robots.txt`; si algún día cambia el dominio, hay que cambiarla en todos esos sitios y volver a generar el QR de las mesas. `assets/img/share.jpg` es la imagen que se ve al compartir el enlace y los iconos de `assets/icons/` son el logo que Google enseña junto al resultado.
 
 ## Cifras bajo la portada
 
