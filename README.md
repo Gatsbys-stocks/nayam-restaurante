@@ -140,9 +140,9 @@ La web no usa cookies, no tiene formularios y mide visitas con GoatCounter sin c
 
 Esta web no tiene formularios que envíen datos ni servidor, por lo que la superficie de ataque es mínima. Aun así:
 
-- **Content Security Policy** estricta en `index.html`: solo se ejecutan scripts, estilos, fuentes, imágenes y vídeo del propio sitio, más una excepción concreta: el script de GoatCounter (`gc.zgo.at`) con su endpoint (`9-s.goatcounter.com`). No hay scripts ni estilos en línea, no se permiten `iframe` y no hay formularios que envíen datos.
+- **Content Security Policy** estricta en `index.html`: solo se ejecutan scripts, estilos, fuentes, imágenes y vídeo del propio sitio, más una excepción concreta: el script de GoatCounter (`gc.zgo.at`) con su endpoint (`nayam.goatcounter.com`). No hay scripts ni estilos en línea, no se permiten `iframe` y no hay formularios que envíen datos.
 - **Pocos terceros, bien acotados:** las fuentes y los vídeos están alojados en el propio repositorio y no hay mapas incrustados ni librerías externas.
-  - **GoatCounter** cuenta visitas sin cookies ni datos personales. Las estadísticas se ven en https://9-s.goatcounter.com. Ese código de sitio es el mismo que usa otro proyecto: si quieres estadísticas separadas, crea un sitio nuevo en GoatCounter y cambia las dos URLs `9-s.goatcounter.com` en `index.html` y `_headers`.
+  - **GoatCounter** cuenta visitas sin cookies ni datos personales. Las estadísticas se ven en https://nayam.goatcounter.com (sitio propio de Nayam). Si cambia el código del sitio, hay que cambiar `nayam.goatcounter.com` en el `<script data-goatcounter>` de las páginas, en la política de seguridad (`connect-src` e `img-src`) de cada página y en `_headers`.
   - **TikTok:** los clips de la sección de vídeos son archivos propios (`assets/video/`), así que la web no carga el reproductor de TikTok ni sus cookies. Cada clip enlaza al vídeo original en TikTok.
 - **Enlaces externos** con `rel="noopener"`.
 - **Sin secretos:** no hay claves ni tokens en el código. `.gitignore` bloquea `.env`, claves y certificados para que nunca se suban por error. No añadas aquí contraseñas ni claves de API.
